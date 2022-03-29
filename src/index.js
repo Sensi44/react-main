@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App"
 
 
-console.log(312333)
+const el = <h1>Hello world</h1>
+
+
 
 let root = document.getElementById("root");
 ReactDOM.render(<App />, root);
