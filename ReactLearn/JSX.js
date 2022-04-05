@@ -7,45 +7,42 @@
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 // Пример базы JSX
 
-
-import TodoListItem from "../src/components/todo-list-item";
+import TodoListItem from "../src/components/TodoList-item";
 import React from "react";
 
 const TodoList = () => {
-    const items = ['Drink coffee', 'Build awesome app']
-    return (
-        <ul>
-            <li>{ items[0] }</li>
-            <li>{ items[1] }</li>
-        </ul>
-    )
-}
+  const items = ["Drink coffee", "Build awesome App"];
+  return (
+    <ul>
+      <li>{items[0]}</li>
+      <li>{items[1]}</li>
+    </ul>
+  );
+};
 
 const AppHeader = () => {
-    return <h1>My Todo List</h1>;
-}
+  return <h1>My Todo List</h1>;
+};
 
 const SearchPanel = () => {
-    const searchText = 'Type here to search';
-    const searchStyle = {
-        fontSize: '25px',
-        color: 'red',
-    }
-    return <input
-        style = {searchStyle}
-        placeholder={searchText} />;
-}
+  const searchText = "Type here to search";
+  const searchStyle = {
+    fontSize: "25px",
+    color: "red",
+  };
+  return <input style={searchStyle} placeholder={searchText} />;
+};
 
 const App = () => {
-    return (
-        <div>
-            <span>{ new Date().toString() }</span>
-            <AppHeader />
-            <SearchPanel />
-            <TodoList />
-        </div>
-    )
-}
+  return (
+    <div>
+      <span>{new Date().toString()}</span>
+      <AppHeader />
+      <SearchPanel />
+      <TodoList />
+    </div>
+  );
+};
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 // Массивы и Spread
 
@@ -54,13 +51,11 @@ const App = () => {
 //      {todos} - в данном случае это переданный массив [1,2,3]
 // }
 
-
 // В JSX можно вставлять массивы элементов (не только по одному)
 //    <ul>
 //        {elements}
 //    </ul>
 //{elememts} - это массив реакт-элементов
-
 
 // Можно передать все свойства объекта в компонент используя
 // Object Spread оператор ( не перечисляя каждое)
@@ -74,23 +69,19 @@ const App = () => {
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 // Деструктуризация и остаточные параметры
 
-const todoList = ({todos}) => {
-    const elements = todos.map((item) => {
-        const {id, ...itemProps} = item;
-        // айдишник отдельно, остаточные параметры отдельно
-        return (<li key={id}>
-            <TodoListItem { ...itemProps }/>
-        </li>)
-    })
-
-
+const todoList = ({ todos }) => {
+  const elements = todos.map((item) => {
+    const { id, ...itemProps } = item;
+    // айдишник отдельно, остаточные параметры отдельно
     return (
-        <ul>
-            {elements}
-        </ul>
-    )
-}
+      <li key={id}>
+        <TodoListItem {...itemProps} />
+      </li>
+    );
+  });
 
+  return <ul>{elements}</ul>;
+};
 
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 //
