@@ -3,6 +3,8 @@ import React from "react";
 import Header from "../Header";
 import Main from "../Main";
 import Footer from "../Footer";
+import Test from "../StateFull-learn";
+import Test2 from "../props-learn";
 
 import "./App.scss";
 
@@ -23,6 +25,8 @@ const App = () => {
       <Header />
       <Main todos={todoData} />
       <Footer count={todoData.length} />
+      <Test />
+      <Test2 />
     </div>
   );
 };
