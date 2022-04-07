@@ -3,8 +3,13 @@ import React from "react";
 import Header from "../Header";
 import Main from "../Main";
 import Footer from "../Footer";
-import Test from "../StateFull-learn";
-import Test2 from "../props-learn";
+
+import Lesson_03 from "../../lessons/03_state";
+import Lesson_04 from "../../lessons/04_props";
+import {Lesson_05, Counter, Button} from "../../lessons/05_props/Lesson_05";
+import Lesson_06 from "../../lessons/06_events";
+import Lesson_07 from "../../lessons/07_if-render";
+
 
 import "./App.scss";
 
@@ -25,8 +30,21 @@ const App = () => {
       <Header />
       <Main todos={todoData} />
       <Footer count={todoData.length} />
-      <Test />
-      <Test2 />
+
+
+      {/* Уроки с плэйлиста* /}
+
+      {/*<Lesson_03 />*/}
+
+      {/*<Lesson_04 />*/}
+
+      {/*<Lesson_05 child={<Button />}>*/}
+      {/*  <Counter />*/}
+      {/*</Lesson_05>*/}
+
+      {/*<Lesson_06 />*/}
+      <Lesson_07 />
+      {/*Уроки конец*/}
     </div>
   );
 };

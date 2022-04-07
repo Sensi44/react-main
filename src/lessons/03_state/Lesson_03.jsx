@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 
-import "./Test.scss";
 
-export default class Test extends Component{
+export default class Lesson_03 extends Component{
 
 state = {
   counter: 0,

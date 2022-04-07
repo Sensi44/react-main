@@ -1,7 +1,7 @@
 import React, {Component} from "react";
+
 import PropTypes from 'prop-types';
 
-import "./Test2.scss";
 
 
 const Counter = ({counter, func, number, string}) => {
@@ -25,7 +25,7 @@ Counter.defaultProps = {   // указываем дефолтные значен
 
 
 
-class Test2 extends Component{
+export default class Lesson_04 extends Component{
 state = {
   counter: 0,
   id2: 100,
@@ -52,7 +52,6 @@ state = {
   }
 }
 
-export default Test2;
 
 
 
