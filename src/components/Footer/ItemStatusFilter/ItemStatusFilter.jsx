@@ -3,10 +3,20 @@ import React, { Component } from "react";
 import "./ItemStatusFilter.scss";
 
 export default class ItemStatusFilter extends Component {
+
   render() {
+    const { count } = this.props;
+
+    let tasksCount = 0;
+    count.forEach( (task) => {
+      if (task.classname !== 'completed') {
+          tasksCount++
+      }
+    })
+
     return (
       <div className="footer-wrap">
-        <span className="todo-count">{this.props.count} items left</span>
+        <span className="todo-count">{tasksCount} items left</span>
 
         <ul className="filters">
           <li>
@@ -26,7 +36,17 @@ export default class ItemStatusFilter extends Component {
   }
 }
 
-//
+
+
+
+
+
+
+
+
+
+
+// Old version
 // const ItemStatusFilter = (props) => {
 //   return (
 //     <div className="footer-wrap">

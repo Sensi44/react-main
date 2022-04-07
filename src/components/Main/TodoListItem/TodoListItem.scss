@@ -4,6 +4,10 @@
     border-bottom: 1px solid #ededed;
 }
 
+.important {
+  position: absolute;
+  top: calc(50% - 10px);
+}
 
 .todo-list li .toggle {
     text-align: center;

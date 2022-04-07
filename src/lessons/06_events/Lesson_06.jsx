@@ -40,13 +40,6 @@ export default Lesson_06;
 
 
 
-
-
-
-
-
-
-
 // Передача аргументов в события
 // class Lesson_07 extends Component {
 //

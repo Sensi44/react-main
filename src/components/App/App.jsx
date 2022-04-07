@@ -22,25 +22,29 @@ const App = () => {
   const todoData = [
     {
       label: "Completed task",
-      important: false,
+      important: true,
       id: 1,
       classname: "completed",
     },
-    { label: "Editing task", important: true, id: 2, classname: "editing" },
+    { label: "Editing task", important: false, id: 2, classname: "editing" },
     { label: "Active task", important: false, id: 3 },
+    { label: "Active task", important: true, id: 4 },
   ];
 
   return (
     <div className="todoapp">
       <Header />
       <Main todos={todoData} />
-      <Footer count={todoData.length} />
+      <Footer count={todoData} />
+
+
+
 
 
       {/*  Уроки с плэйлиста* /}
       {/* <Lesson_03 /> */}
       {/* <Lesson_04 /> */}
- 
+
       {/* <Lesson_05 child={<Button />}>*/}
       {/*   <Counter /> */}
       {/* </Lesson_05>  */}
@@ -49,7 +53,9 @@ const App = () => {
       {/* <Lesson_07 /> */}
       {/* <Lesson_08 /> */}
       {/* <Lesson_09 /> */}
-      <Lesson_10 />
+      {/* <Lesson_10 />*/}
+      {/* <Lesson_11 />*/}
+      {/* <Lesson_12 />*/}
       {/*Уроки конец*/}
     </div>
   );

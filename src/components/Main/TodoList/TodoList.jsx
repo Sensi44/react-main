@@ -4,9 +4,9 @@ import "./TodoList.scss";
 
 const TodoList = ({ todos }) => {
   const elements = todos.map((item) => {
-    const { id, ...itemProps } = item;
+    const { id, classname, ...itemProps } = item;
     return (
-      <li key={id} className={itemProps.classname}>
+      <li key={id} className={classname}>
         <TodoListItem {...itemProps} />
         <input type="text" className="edit" defaultValue="Editing task" />
       </li>

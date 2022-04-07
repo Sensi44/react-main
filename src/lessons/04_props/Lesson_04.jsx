@@ -2,8 +2,6 @@ import React, {Component} from "react";
 
 import PropTypes from 'prop-types';
 
-
-
 const Counter = ({counter, func, number, string}) => {
   console.log(counter, func, number, string);
   return <p>{`Counter component. Counter value is: ${counter}`}</p>
@@ -44,9 +42,9 @@ state = {
       <div>
         <div>{counter}&nbsp;{id2}</div>
         <button onClick={this.handleClick}>+1</button>
-        <Counter
-          counter={counter}
-        />
+
+        <Counter counter={counter}/>
+
       </div>
     )
   }
