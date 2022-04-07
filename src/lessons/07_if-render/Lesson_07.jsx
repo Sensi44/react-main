@@ -104,10 +104,10 @@ export default Lesson_07;
 // // Простейший условный рендеринг
 // const ValidationMsg = ({val}) => {
 //   console.log(val)
-//   if (val >= 10) {
-//     return <h2>Grate than 10 --- {val}</h2>
+//   if (val >= 10_forms) {
+//     return <h2>Grate than 10_forms --- {val}</h2>
 //   } else {
-//     return <h3>Less than 10 --- {val} </h3>
+//     return <h3>Less than 10_forms --- {val} </h3>
 //   }
 // }
 //
@@ -129,7 +129,7 @@ export default Lesson_07;
 //   return (
 //     <div>
 //       {/*ternary*/}
-//       {val >= 10 ? <h2>Grate than 10 - {val}</h2> : <h2>Less than 10 - {val}</h2>}
+//       {val >= 10_forms ? <h2>Grate than 10_forms - {val}</h2> : <h2>Less than 10_forms - {val}</h2>}
 //       {/*&&*/}
 //       {val && <span>We have val</span>}
 //       {/*Либо рендеринг либо не отображается вообще*/}

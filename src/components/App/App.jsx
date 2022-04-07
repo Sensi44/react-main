@@ -9,9 +9,14 @@ import Lesson_04 from "../../lessons/04_props";
 import {Lesson_05, Counter, Button} from "../../lessons/05_props/Lesson_05";
 import Lesson_06 from "../../lessons/06_events";
 import Lesson_07 from "../../lessons/07_if-render";
-
+import Lesson_08 from "../../lessons/08_list-keys";
+import Lesson_09 from "../../lessons/09_fragments-styles";
+import Lesson_10 from "../../lessons/10_forms";
+import Lesson_11 from "../../lessons/11_lifecycles-methods";
+import Lesson_12 from "../../lessons/12_ref-links";
 
 import "./App.scss";
+
 
 const App = () => {
   const todoData = [
@@ -32,18 +37,19 @@ const App = () => {
       <Footer count={todoData.length} />
 
 
-      {/* Уроки с плэйлиста* /}
+      {/*  Уроки с плэйлиста* /}
+      {/* <Lesson_03 /> */}
+      {/* <Lesson_04 /> */}
+ 
+      {/* <Lesson_05 child={<Button />}>*/}
+      {/*   <Counter /> */}
+      {/* </Lesson_05>  */}
 
-      {/*<Lesson_03 />*/}
-
-      {/*<Lesson_04 />*/}
-
-      {/*<Lesson_05 child={<Button />}>*/}
-      {/*  <Counter />*/}
-      {/*</Lesson_05>*/}
-
-      {/*<Lesson_06 />*/}
-      <Lesson_07 />
+      {/* <Lesson_06 /> */}
+      {/* <Lesson_07 /> */}
+      {/* <Lesson_08 /> */}
+      {/* <Lesson_09 /> */}
+      <Lesson_10 />
       {/*Уроки конец*/}
     </div>
   );
