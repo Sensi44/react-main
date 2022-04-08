@@ -14,6 +14,8 @@ import Lesson_09 from "../../lessons/09_fragments-styles";
 import Lesson_10 from "../../lessons/10_forms";
 import Lesson_11 from "../../lessons/11_lifecycles-methods";
 import Lesson_12 from "../../lessons/12_ref-links";
+import Lesson_13 from "../../lessons/13_high-order-comp-s";
+import Lesson_14 from "../../lessons/14_react-portal";
 
 import "./App.scss";
 
@@ -42,7 +44,7 @@ const App = () => {
 
 
       {/*  Уроки с плэйлиста* /}
-      {/* <Lesson_03 /> */}
+      {/* <Lesson_14 /> */}
       {/* <Lesson_04 /> */}
 
       {/* <Lesson_05 child={<Button />}>*/}
@@ -56,6 +58,8 @@ const App = () => {
       {/* <Lesson_10 />*/}
       {/* <Lesson_11 />*/}
       {/* <Lesson_12 />*/}
+      {/* <Lesson_13 />*/}
+       <Lesson_14 />
       {/*Уроки конец*/}
     </div>
   );
