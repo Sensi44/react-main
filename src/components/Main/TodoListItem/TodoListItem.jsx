@@ -3,41 +3,46 @@ import React, { Component } from "react";
 import "./TodoListItem.scss";
 
 export default class TodoListItem extends Component {
-
   state = {
     important: false,
+    done: false,
   }
 
   onLabelClick = () => {
-    console.log(`Done: ${this.props.label}`);
+    const { done } = this.state;
+    this.setState({
+      done: !done,
+    })
   };
 
-  handleChange = () => {
+  importantChange = () => {
     const { important } = this.state;
     this.setState({
-      important: important ? false : true,
+      important: !important,
     })
   }
 
   render() {
-    // console.log(this.props) // label, important
-
     const {label} = this.props;
-    // const {label, important} = this.props;
-    const { important } = this.state;
+    const { important, done } = this.state;
 
     const style = {
       color: important ? 'red' : 'black',
       fontWeight: important ? 'bold' : 'normal',
+      fontSize: 27,
     }
+
+    let labelClassNames = 'description';
+    (done) ? labelClassNames += ' done' : labelClassNames += '';
+    (important) ? labelClassNames += ' description-important' : labelClassNames += '';
 
 
     return (
       <div className="view">
         <input type="checkbox" className="toggle" />
-        <span onClick={this.handleChange} className="important" style={style}>{important ? '!' : '~'}</span>
+        <span onClick={this.importantChange} className="important" style={style}>{important ? '!' : '~'}</span>
         <label onClick={this.onLabelClick}>
-          <span className="description" >{label}</span>
+          <span className={labelClassNames} >{label}</span>
           <span className="created">created 17 seconds ago</span>
         </label>
         <button className="icon icon-edit" />
