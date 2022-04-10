@@ -5,10 +5,10 @@ import "./ItemStatusFilter.scss";
 export default class ItemStatusFilter extends Component {
 
   render() {
-    const { count } = this.props;
+    const { todoData } = this.props;
 
     let tasksCount = 0;
-    count.forEach( (task) => {
+      todoData.forEach( (task) => {
       if (task.classname !== 'completed') {
           tasksCount++
       }

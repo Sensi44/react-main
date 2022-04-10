@@ -1,12 +1,14 @@
 import React from "react";
-
-import "./Footer.scss";
 import ItemStatusFilter from "./ItemStatusFilter";
 
-const Footer = (props) => {
+
+import "./Footer.scss";
+
+
+const Footer = ({count, add}) => {
   return (
     <footer className="footer">
-      <ItemStatusFilter {...props} />
+      <ItemStatusFilter todoData={count} /><br />
     </footer>
   );
 };

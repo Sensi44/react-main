@@ -4,6 +4,10 @@
     border-bottom: 1px solid #ededed;
 }
 
+.view {
+    display: flex;
+}
+
 .done {
   color: #cdcdcd;
   text-decoration: line-through;
@@ -17,8 +21,12 @@
 }
 
 .important {
-  position: absolute;
+  position: relative;
   top: calc(50% - 10px);
+  line-height: 58px;
+  text-align: center;
+  margin-right: 8px;
+  width: 16px;
 }
 
 .todo-list li .toggle {
@@ -56,13 +64,17 @@
     background-image: url(data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E);
     background-repeat: no-repeat;
     background-position: center left;
+
+
 }
 
 .todo-list li label {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 85px 15px 60px;
+    padding: 15px 0 15px 0;
+    flex-grow: 1;
+    margin-right: 5px;
 }
 
 
@@ -107,21 +119,21 @@ button {
 
 
 .todo-list li .icon {
-    position: absolute;
     top: 0;
     bottom: -3px;
     width: 30px;
     height: 40px;
     font-size: 34px;
     color: #cc9a9a;
-    margin: auto 0 11px;
+    margin: auto 2px 11px;
     transition: color 0.2s ease-out;
     cursor: pointer;
+    box-shadow: 0 0 1px 1px rgba(255,0,0, 0.3);
 }
 
 .todo-list li .icon-edit {
     font-size: 19px;
-    right: 45px;
+    right: 70px;
 }
 
 .todo-list li .icon-edit::after {
@@ -129,12 +141,23 @@ button {
 }
 
 .todo-list li .icon-destroy {
-    right: 10px;
+    right: 35px;
 }
 
 .todo-list li .icon-destroy::after {
     content: "×";
 }
+
+.todo-list li .icon-important {
+    right: 0px;
+}
+
+.todo-list li .icon-important::after {
+    content: "!";
+}
+
+
+
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .toggle-all,

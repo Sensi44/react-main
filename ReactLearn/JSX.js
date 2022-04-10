@@ -7,7 +7,7 @@
 //▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 // Пример базы JSX
 
-import TodoListItem from "../src/components/TodoList-item";
+import TodoListItem from "../src/components/ItemAddForm-item";
 import React from "react";
 
 const TodoList = () => {
@@ -47,7 +47,7 @@ const App = () => {
 // Массивы и Spread
 
 // Массив можно передать как свойство
-// const TodoList = ({todos}) => {
+// const ItemAddForm = ({todos}) => {
 //      {todos} - в данном случае это переданный массив [1,2,3]
 // }
 
