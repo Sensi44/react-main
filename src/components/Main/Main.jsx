@@ -5,15 +5,16 @@ import TodoList from "./TodoList";
 
 import "./Main.scss";
 
-const Main = ({todos, onDeleted, add, done, imp}) => {
+const Main = ({ todos, onDeleted, add, onToggleDone, onToggleImportant }) => {
   return (
     <section className="main">
-      <TodoList todos={todos}
-                onDeleted={(id) => onDeleted(id)}
-                done={(id => done(id))}
-                imp={(id, aa) => imp(id, aa)}
+      <TodoList
+        todos={todos}
+        onDeleted={(id) => onDeleted(id)}
+        onToggleDone={(id) => onToggleDone(id)}
+        onToggleImportant={(id) => onToggleImportant(id)}
       />
-       <ItemAddForm add={() => add('Тестовое добавление')}/>
+      <ItemAddForm add={() => add("Тестовое добавление")} />
     </section>
   );
 };

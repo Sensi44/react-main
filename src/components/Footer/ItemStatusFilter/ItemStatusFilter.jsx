@@ -5,18 +5,11 @@ import "./ItemStatusFilter.scss";
 export default class ItemStatusFilter extends Component {
 
   render() {
-    const { todoData } = this.props;
-
-    let tasksCount = 0;
-      todoData.forEach( (task) => {
-      if (task.classname !== 'completed') {
-          tasksCount++
-      }
-    })
+    const {toDo, done} = this.props;
 
     return (
       <div className="footer-wrap">
-        <span className="todo-count">{tasksCount} items left</span>
+        <span className="todo-count">Осталось - {toDo}, выполнено - {done}</span>
 
         <ul className="filters">
           <li>

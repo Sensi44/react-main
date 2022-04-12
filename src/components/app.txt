@@ -1,0 +1,10 @@
+<App>                              <-- todoData Основной объект данных
+    <Header>                       <--
+        <Title>                    <--
+        <SearchPanel>              <--
+    <Main>                         <--
+        <TodoList>                 <--
+            <TodoListItem>         <--
+        <ItemAddForm>              <--
+    <ItemAdd>                       <--
+        <ItemStatusFilter>         <--

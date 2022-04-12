@@ -5,10 +5,11 @@ import ItemStatusFilter from "./ItemStatusFilter";
 import "./Footer.scss";
 
 
-const Footer = ({count, add}) => {
+const Footer = (props) => {
+  const {toDo, done} = props;
   return (
     <footer className="footer">
-      <ItemStatusFilter todoData={count} /><br />
+      <ItemStatusFilter toDo={toDo} done={done} /><br />
     </footer>
   );
 };
