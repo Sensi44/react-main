@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 
 import Header from "../Header";
-import ItemAdd from "../ItemAdd";
 import Main from "../Main";
 import Footer from "../Footer";
 
@@ -26,12 +25,15 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      this.createTodoItem("Drink Coffee", "completed"),
+      this.createTodoItem("Drink Coffee", "active"),
       this.createTodoItem("Editing task !", "editing"),
       this.createTodoItem("work,sleep, repeat", "active"),
       this.createTodoItem("sleep", "active"),
     ],
+    curData: '',
+    filter: 'all',
   };
+
 
   createTodoItem(label, classname = "active") {
     return {
@@ -42,6 +44,7 @@ export default class App extends Component {
       done: false,
     };
   }
+
 
   addItem = (text) => {
     const newItem = this.createTodoItem(text);
@@ -54,6 +57,7 @@ export default class App extends Component {
     });
   };
 
+
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
       const idx = todoData.findIndex((el) => el.id === id);
@@ -64,42 +68,34 @@ export default class App extends Component {
     });
   };
 
+
   toggleProperty(arr, id, propName) {
     const idx = arr.findIndex((el) => el.id === id);
     const oldItem = arr[idx];
+
+    if(propName==='done') {
+      console.log(oldItem.classname)
+      let classname = (oldItem.classname === 'active')
+      ? 'completed'
+      : 'active';
+      const newItem = { ...oldItem, [propName]: !oldItem[propName], classname: classname };
+      return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
+    }
+
     const newItem = { ...oldItem, [propName]: !oldItem[propName] };
     console.table([...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]);
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
   }
 
+
   onToggleDone = (id) => {
     this.setState(({ todoData }) => {
-      // const newArray = todoData.map((obj) => {
-      //   if (obj.id === id && obj.done) {
-      //     return {
-      //       label: obj.label,
-      //       important: obj.important,
-      //       id: obj.id,
-      //       classname: "active",
-      //       done: !obj.done,
-      //     };
-      //   }
-      //   if (obj.id === id && !obj.done) {
-      //     return {
-      //       label: obj.label,
-      //       important: obj.important,
-      //       id: obj.id,
-      //       classname: "completed",
-      //       done: !obj.done,
-      //     };
-      //   }
-      //   return obj;
-      // });
       return {
         todoData: this.toggleProperty(todoData, id, "done"),
       };
     });
   };
+
 
   onToggleImportant = (id) => {
     this.setState(({ todoData }) => {
@@ -107,24 +103,45 @@ export default class App extends Component {
         todoData: this.toggleProperty(todoData, id, "important"),
       };
     });
+
   };
 
+
+  filter2 = (items, filterType) => {
+    console.log(items, filterType);
+    switch(filterType) {
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter((item => item.classname === 'active'))
+      case 'completed':
+        return items.filter((item => item.classname === 'completed'))
+      default:
+        return items
+    }
+  }
+
+  filter = (filterType) => {
+    this.setState({filter: filterType,});
+  }
+
   render() {
-    const { todoData } = this.state;
+    const { todoData, curData } = this.state;
     const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
+    console.log(this.state.filter)
     return (
       <div className="todoapp">
         <Header />
-        <ItemAdd />
+
         <Main
-          todos={todoData}
+          todos={this.filter2(todoData, this.state.filter)}
           onDeleted={this.deleteItem}
           add={this.addItem}
           onToggleDone={(id) => this.onToggleDone(id)}
           onToggleImportant={(id) => this.onToggleImportant(id)}
         />
-        <Footer toDo={todoCount} done={doneCount} />
+        <Footer toDo={todoCount} done={doneCount} filter={(f) => this.filter(f)}/>
 
         {/*  Уроки с плэйлиста* /}
         {/* <Lesson_03 /> */}

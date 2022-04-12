@@ -6,10 +6,14 @@ import "./Footer.scss";
 
 
 const Footer = (props) => {
-  const {toDo, done} = props;
+  const {toDo, done, filter} = props;
   return (
     <footer className="footer">
-      <ItemStatusFilter toDo={toDo} done={done} /><br />
+      <ItemStatusFilter
+        toDo={toDo}
+        done={done}
+        filter={(f) => filter(f)}
+      /> <br />
     </footer>
   );
 };

@@ -14,7 +14,7 @@ const Main = ({ todos, onDeleted, add, onToggleDone, onToggleImportant }) => {
         onToggleDone={(id) => onToggleDone(id)}
         onToggleImportant={(id) => onToggleImportant(id)}
       />
-      <ItemAddForm add={() => add("Тестовое добавление")} />
+      <ItemAddForm add={(text) => add(text)} />
     </section>
   );
 };
