@@ -5,11 +5,11 @@ import "./ItemStatusFilter.scss";
 export default class ItemStatusFilter extends Component {
 
   render() {
-    const {toDo, done, filter} = this.props;
+    const {toDo, done, filter, clear} = this.props;
 
     return (
       <div className="footer-wrap">
-        <span className="todo-count">Осталось - {toDo}, выполнено - {done}</span>
+        <span className="todo-count">| Active - {toDo}, done - {done} |</span>
 
         <ul className="filters">
           <li onClick={() => filter('all')}>
@@ -25,7 +25,9 @@ export default class ItemStatusFilter extends Component {
           </li>
         </ul>
 
-        <button className="clear-completed">Clear completed</button>
+        <button className="clear-completed"
+                onClick={clear}
+        >Clear completed</button>
       </div>
     );
   }

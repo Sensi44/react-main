@@ -125,6 +125,12 @@ export default class App extends Component {
     this.setState({filter: filterType,});
   }
 
+  clearAll = () => {
+    this.setState({
+      todoData: [],
+    })
+  }
+
   render() {
     const { todoData, curData } = this.state;
     const doneCount = todoData.filter((el) => el.done).length;
@@ -141,7 +147,12 @@ export default class App extends Component {
           onToggleDone={(id) => this.onToggleDone(id)}
           onToggleImportant={(id) => this.onToggleImportant(id)}
         />
-        <Footer toDo={todoCount} done={doneCount} filter={(f) => this.filter(f)}/>
+        <Footer
+          toDo={todoCount}
+          done={doneCount}
+          filter={(f) => this.filter(f)}
+          clear={this.clearAll}
+        />
 
         {/*  Уроки с плэйлиста* /}
         {/* <Lesson_03 /> */}
