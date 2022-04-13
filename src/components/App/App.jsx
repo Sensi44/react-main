@@ -17,12 +17,9 @@ import Footer from "../Footer";
 // import  Lesson_13 from "../../lessons/13_high-order-comp-s";
 // import  Lesson_14 from "../../lessons/14_react-portal";
 
-import Lesson_1 from "../../ru.reactjs.org/01_hooks";
-import Lesson_2 from "../../ru.reactjs.org/02_hooks";
-import Lesson_3 from "../../ru.reactjs.org/03_hooks";
-
 
 import "./App.scss";
+
 
 export default class App extends Component {
   maxId = 100;
@@ -34,9 +31,9 @@ export default class App extends Component {
       this.createTodoItem("work,sleep, repeat", "active"),
       this.createTodoItem("sleep", "active"),
     ],
-    curData: '',
     filter: 'all',
   };
+
 
 
   createTodoItem(label, classname = "active") {
@@ -136,10 +133,13 @@ export default class App extends Component {
   }
 
   render() {
-    const { todoData, curData } = this.state;
+    const { todoData } = this.state;
     const doneCount = todoData.filter((el) => el.done).length;
     const todoCount = todoData.length - doneCount;
-    console.log(this.state.filter)
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
+
     return (
       <div className="todoapp">
         <Header />
@@ -173,10 +173,6 @@ export default class App extends Component {
         {/* <Lesson_12 /> */}
         {/* <Lesson_13 /> */}
         {/* <Lesson_14 /> */}
-
-        <Lesson_1/>
-        <Lesson_2/>
-        <Lesson_3/>
       </div>
     );
   }

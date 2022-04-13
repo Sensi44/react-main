@@ -1,12 +1,12 @@
 import React, {Component, useState, useEffect, useRef} from "react";
 
-import "./Lesson_3.scss"
+import "./Lesson_4.scss"
 
 // useRef и прочее
 // Как я понял, в хуке хранятся актуальные данные
 // которые переживают обновление компонента
 
-function Lesson_3() {
+function Lesson_4() {
   const [numbers, setNumbers] = useState([1,2,3,4,5,6,7])
   const ulRef =  useRef();
   const timerRef =  useRef();
@@ -53,7 +53,7 @@ function Lesson_3() {
           })
         }
       </ul>
-      <button onClick={addNumber}>† Новое число †</button>
+      <button onClick={addNumber}>† Новое число1 †</button>
       <br/>
       <button onClick={removeScroll}>♪ Не следить ♪</button>
       <br/><br/>
@@ -63,7 +63,7 @@ function Lesson_3() {
   );
 }
 
-export default Lesson_3
+export default Lesson_4
 
 
 

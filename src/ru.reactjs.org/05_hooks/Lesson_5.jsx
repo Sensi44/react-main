@@ -1,12 +1,12 @@
 import React, {Component, useState, useEffect, useRef} from "react";
 
-import "./Lesson_3.scss"
+import "./Lesson_5.scss"
 
 // useRef и прочее
 // Как я понял, в хуке хранятся актуальные данные
 // которые переживают обновление компонента
 
-function Lesson_3() {
+function Lesson_5() {
   const [numbers, setNumbers] = useState([1,2,3,4,5,6,7])
   const ulRef =  useRef();
   const timerRef =  useRef();
@@ -63,7 +63,7 @@ function Lesson_3() {
   );
 }
 
-export default Lesson_3
+export default Lesson_5
 
 
 
