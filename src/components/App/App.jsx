@@ -1,13 +1,12 @@
-
 import React, { Component } from "react";
 
 import Header from "../Header";
 import Main from "../Main";
 import Footer from "../Footer";
 
-// import  Lesson_03 from "../../lessons/03_state";
-// import  Lesson_04 from "../../lessons/04_props";
-// import {Lesson_05, Counter, Button} from "../../lessons/05_props/Lesson_05";
+// import  Lesson_1 from "../../lessons/01_hooks";
+// import  Lesson_02 from "../../lessons/02_hooks";
+// import {Lesson_03, Counter, Button} from "../../lessons/03_hooks/Lesson_03";
 // import  Lesson_06 from "../../lessons/06_events";
 // import  Lesson_07 from "../../lessons/07_if-render";
 // import  Lesson_08 from "../../lessons/08_list-keys";
@@ -17,6 +16,11 @@ import Footer from "../Footer";
 // import  Lesson_12 from "../../lessons/12_ref-links";
 // import  Lesson_13 from "../../lessons/13_high-order-comp-s";
 // import  Lesson_14 from "../../lessons/14_react-portal";
+
+import Lesson_1 from "../../ru.reactjs.org/01_hooks";
+import Lesson_2 from "../../ru.reactjs.org/02_hooks";
+import Lesson_3 from "../../ru.reactjs.org/03_hooks";
+
 
 import "./App.scss";
 
@@ -155,11 +159,11 @@ export default class App extends Component {
         />
 
         {/*  Уроки с плэйлиста* /}
-        {/* <Lesson_03 /> */}
-        {/* <Lesson_04 /> */}
-        {/* <Lesson_05 child={<Button />}>*/}
+        {/* <Lesson_1 /> */}
+        {/* <Lesson_02 /> */}
+        {/* <Lesson_03 child={<Button />}>*/}
         {/*   <Counter /> */}
-        {/* </Lesson_05>  */}
+        {/* </Lesson_03>  */}
         {/* <Lesson_06 /> */}
         {/* <Lesson_07 /> */}
         {/* <Lesson_08 /> */}
@@ -169,6 +173,10 @@ export default class App extends Component {
         {/* <Lesson_12 /> */}
         {/* <Lesson_13 /> */}
         {/* <Lesson_14 /> */}
+
+        <Lesson_1/>
+        <Lesson_2/>
+        <Lesson_3/>
       </div>
     );
   }

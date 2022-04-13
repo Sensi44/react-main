@@ -5,6 +5,10 @@
   border-bottom: 1px solid #ededed;
 }
 
+.view {
+  display: flex;
+}
+
 .done {
   color: #cdcdcd;
   text-decoration: line-through;
@@ -19,8 +23,12 @@
 }
 
 .important {
-  position: absolute;
+  position: relative;
   top: calc(50% - 10px);
+  line-height: 58px;
+  text-align: center;
+  margin-right: 8px;
+  width: 16px;
 }
 
 .todo-list li .toggle {
@@ -64,7 +72,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 85px 15px 60px;
+  padding: 15px 0 15px 0;
+  flex-grow: 1;
+  margin-right: 5px;
 }
 
 .todo-list li label .description {
@@ -106,21 +116,21 @@ button {
 }
 
 .todo-list li .icon {
-  position: absolute;
   top: 0;
   bottom: -3px;
   width: 30px;
   height: 40px;
   font-size: 34px;
   color: #cc9a9a;
-  margin: auto 0 11px;
+  margin: auto 2px 11px;
   transition: color 0.2s ease-out;
   cursor: pointer;
+  box-shadow: 0 0 1px 1px rgba(255, 0, 0, 0.3);
 }
 
 .todo-list li .icon-edit {
   font-size: 19px;
-  right: 45px;
+  right: 70px;
 }
 
 .todo-list li .icon-edit::after {
@@ -128,11 +138,19 @@ button {
 }
 
 .todo-list li .icon-destroy {
-  right: 10px;
+  right: 35px;
 }
 
 .todo-list li .icon-destroy::after {
   content: "×";
+}
+
+.todo-list li .icon-important {
+  right: 0px;
+}
+
+.todo-list li .icon-important::after {
+  content: "!";
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
