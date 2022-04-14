@@ -23,7 +23,7 @@ const App = () => {
   let maxId =  useRef(100);
 
   const createTodoItem = (label, classname = "active") => {
-    console.log(maxId.current)
+    // console.log(maxId.current)
     return {
       label,
       important: false,
@@ -54,13 +54,15 @@ const App = () => {
     setTodoData(newArray);
   };
 
-  const toggleProperty = (arr, id, propName) => {
+  const toggleProperty = (arr, id, propName, text) => {
+
     const idx = arr.findIndex((el) => el.id === id);
     const oldItem = arr[idx];
-    console.log(idx, oldItem)
+
 
     if(propName==='done') {
       console.log(oldItem.classname)
+
       let classname = (oldItem.classname === 'active')
       ? 'completed'
       : 'active';
@@ -68,9 +70,11 @@ const App = () => {
       return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
     }
 
+
     if (arr[idx].classname === 'editing') {
       let old = arr[idx].classname;
-      const newItem = { ...oldItem, [propName]: {old} };
+      console.log(old)
+      const newItem = { ...oldItem, classname: arr[idx].done ? 'completed' : 'active', label : text };
       return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
     }
 
@@ -89,9 +93,12 @@ const App = () => {
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
   }
 
+
+
   const onToggleDone = (id) => {
     setTodoData(toggleProperty(todoData, id, "done"));
   };
+
 
   const onToggleImportant = (id) => {
     setTodoData(toggleProperty(todoData, id, "important"));
@@ -102,12 +109,13 @@ const App = () => {
     setTodoData(toggleProperty(todoData, id, "classname"));
   }
 
-  const confirmEdit = (id) => {
-    setTodoData(toggleProperty(todoData, id, "classname"));
+  const confirmEdit = (text, id) => {
+    console.log(text, id)
+    setTodoData(toggleProperty(todoData, id, "classname", text));
   }
 
   const filter2 = (items, filterType) => {
-    console.log(items, filterType);
+    // console.log(items, filterType);
     switch(filterType) {
       case 'all':
         return items;
@@ -146,7 +154,7 @@ const App = () => {
         onToggleDone={(id) => onToggleDone(id)}
         onToggleImportant={(id) => onToggleImportant(id)}
         editItem={(id) => editItem(id)}
-        confirmEdit={(id) => confirmEdit(id)}
+        confirmEdit={(text, id) => confirmEdit(text, id)}
       />
       <Footer
         toDo={todoCount}

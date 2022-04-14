@@ -4,7 +4,6 @@ import "./TodoList.scss";
 
 const TodoList = (props) => {
   const { todos, onDeleted, onToggleDone, onToggleImportant, editItem, confirmEdit } = props;
-
   let [label, setLabel] = useState("");
   let [curId, setCurId] = useState('');
 
@@ -13,17 +12,25 @@ const TodoList = (props) => {
     setLabel((label = temp === "undefined" ? "" : temp));
   };
 
-  const onChange = (id) => {
-      setCurId(id);
+  const onSubmit = (e) => {
+    e.preventDefault();
     console.log(curId)
+    confirmEdit(label, curId);
+    setLabel(label = '')
   }
 
-  const test = (e) => {
-    if (e.code === 'Enter') {
-      console.log(curId)
-     confirmEdit(curId);
-    }
+  const onChange = (id) => {
+    setCurId(id);
   }
+
+  //
+  // const test = (e) => {
+  //   if (e.code === 'Enter') {
+  //     console.log(curId)
+  //    confirmEdit(curId);
+  //   }
+  // }
+
 
   const elements = todos.map((item) => {
     const { id, classname, ...itemProps } = item;
@@ -37,15 +44,10 @@ const TodoList = (props) => {
           onToggleDone={() => onToggleDone(id)}
           onToggleImportant={() => onToggleImportant(id)}
           editItem={() => editItem(id)}
+          confirmEdit={(text) => confirmEdit(text, id)}
+          id={id}
         />
-        <input type="text"
-               className="edit"
-               onChange={onLabelChange}
-               placeholder={itemProps.label}
-               value={label}
-               onKeyDown={() => onChange(id)}
-               onKeyUp={test}
-        />
+
       </li>
     );
   });
