@@ -27,8 +27,8 @@ function App() {
       {/* {visibleList && <Lesson_2 />} */}
       {/* <button onClick={toggleVisibleList}>{visibleList ? 'Скрыть' : 'Показать' }</button> */}
       {/* <Lesson_3 /> */}
-      <Lesson_4 />
-      {/* Lesson_5 /> */}
+      {/* <Lesson_4 /> */}
+       <Lesson_5 />
 
 
     </div>

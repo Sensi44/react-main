@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useRef, useMemo } from "react";
 
 import Header from "../Header";
 import Main from "../Main";
@@ -17,62 +17,47 @@ import Footer from "../Footer";
 // import  Lesson_13 from "../../lessons/13_high-order-comp-s";
 // import  Lesson_14 from "../../lessons/14_react-portal";
 
-
 import "./App.scss";
 
+const App = () => {
+  let maxId =  useRef(100);
 
-export default class App extends Component {
-  maxId = 100;
-
-  state = {
-    todoData: [
-      this.createTodoItem("Drink Coffee", "active"),
-      this.createTodoItem("Editing task !", "editing"),
-      this.createTodoItem("work,sleep, repeat", "active"),
-      this.createTodoItem("sleep", "active"),
-    ],
-    filter: 'all',
-  };
-
-
-
-  createTodoItem(label, classname = "active") {
+  const createTodoItem = (label, classname = "active") => {
+    console.log(maxId.current)
     return {
       label,
       important: false,
-      id: this.maxId++,
+      id: maxId.current++,
       classname,
       done: false,
     };
   }
 
+  const [todoData, setTodoData] = useState([
+    createTodoItem("Drink Coffee", "active"),
+    createTodoItem("Editing task !", "editing"),
+    createTodoItem("work,sleep, repeat", "active"),
+    createTodoItem("sleep", "active"),
+  ]);
+  const [filterStatus, setFilterStatus] = useState('all');
 
-  addItem = (text) => {
-    const newItem = this.createTodoItem(text);
 
-    this.setState(({ todoData }) => {
-      const newArray = [...todoData, newItem];
-      return {
-        todoData: newArray,
-      };
-    });
+  const addItem = (text) => {
+    const newItem = createTodoItem(text);
+    const newArray = [...todoData, newItem];
+    setTodoData(newArray);
   };
 
-
-  deleteItem = (id) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id);
-
-      return {
-        todoData: [...todoData.slice(0, idx), ...todoData.slice(idx + 1)],
-      };
-    });
+  const deleteItem = (id) => {
+    const idx = todoData.findIndex((el) => el.id === id);
+    const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
+    setTodoData(newArray);
   };
 
-
-  toggleProperty(arr, id, propName) {
+  const toggleProperty = (arr, id, propName) => {
     const idx = arr.findIndex((el) => el.id === id);
     const oldItem = arr[idx];
+    console.log(idx, oldItem)
 
     if(propName==='done') {
       console.log(oldItem.classname)
@@ -83,32 +68,45 @@ export default class App extends Component {
       return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
     }
 
+    if (arr[idx].classname === 'editing') {
+      let old = arr[idx].classname;
+      const newItem = { ...oldItem, [propName]: {old} };
+      return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
+    }
+
+    if (propName === 'classname') {
+      arr.forEach((el) => {
+        if ( el.id !== id) {
+          el.classname = (el.classname === 'editing') ? 'active' : el.classname
+        }
+      })
+      const newItem = { ...oldItem, [propName]: 'editing' };
+      return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
+    }
+
     const newItem = { ...oldItem, [propName]: !oldItem[propName] };
     console.table([...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)]);
     return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
   }
 
-
-  onToggleDone = (id) => {
-    this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, "done"),
-      };
-    });
+  const onToggleDone = (id) => {
+    setTodoData(toggleProperty(todoData, id, "done"));
   };
 
-
-  onToggleImportant = (id) => {
-    this.setState(({ todoData }) => {
-      return {
-        todoData: this.toggleProperty(todoData, id, "important"),
-      };
-    });
-
+  const onToggleImportant = (id) => {
+    setTodoData(toggleProperty(todoData, id, "important"));
   };
 
+  const editItem = (id) => {
+    console.log(id)
+    setTodoData(toggleProperty(todoData, id, "classname"));
+  }
 
-  filter2 = (items, filterType) => {
+  const confirmEdit = (id) => {
+    setTodoData(toggleProperty(todoData, id, "classname"));
+  }
+
+  const filter2 = (items, filterType) => {
     console.log(items, filterType);
     switch(filterType) {
       case 'all':
@@ -122,58 +120,60 @@ export default class App extends Component {
     }
   }
 
-  filter = (filterType) => {
-    this.setState({filter: filterType,});
+  const filter = (filterType) => {
+    setFilterStatus(filterType)
   }
 
-  clearAll = () => {
-    this.setState({
-      todoData: [],
-    })
+  const clearAll = () => {
+    setTodoData([]);
   }
 
-  render() {
-    const { todoData } = this.state;
-    const doneCount = todoData.filter((el) => el.done).length;
-    const todoCount = todoData.length - doneCount;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+  const doneCount = todoData.filter((el) => el.done).length;
+  const todoCount = todoData.length - doneCount;
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
 
 
-    return (
-      <div className="todoapp">
-        <Header />
+  return (
+    <div className="todoapp">
+      <Header />
 
-        <Main
-          todos={this.filter2(todoData, this.state.filter)}
-          onDeleted={this.deleteItem}
-          add={this.addItem}
-          onToggleDone={(id) => this.onToggleDone(id)}
-          onToggleImportant={(id) => this.onToggleImportant(id)}
-        />
-        <Footer
-          toDo={todoCount}
-          done={doneCount}
-          filter={(f) => this.filter(f)}
-          clear={this.clearAll}
-        />
+      <Main
+        todos={filter2(todoData, filterStatus)}
+        onDeleted={deleteItem}
+        add={addItem}
+        onToggleDone={(id) => onToggleDone(id)}
+        onToggleImportant={(id) => onToggleImportant(id)}
+        editItem={(id) => editItem(id)}
+        confirmEdit={(id) => confirmEdit(id)}
+      />
+      <Footer
+        toDo={todoCount}
+        done={doneCount}
+        filter={(f) => filter(f)}
+        clear={clearAll}
+      />
 
-        {/*  Уроки с плэйлиста* /}
-        {/* <Lesson_1 /> */}
-        {/* <Lesson_02 /> */}
-        {/* <Lesson_03 child={<Button />}>*/}
-        {/*   <Counter /> */}
-        {/* </Lesson_03>  */}
-        {/* <Lesson_06 /> */}
-        {/* <Lesson_07 /> */}
-        {/* <Lesson_08 /> */}
-        {/* <Lesson_09 /> */}
-        {/* <Lesson_10 /> */}
-        {/* <Lesson_11 /> */}
-        {/* <Lesson_12 /> */}
-        {/* <Lesson_13 /> */}
-        {/* <Lesson_14 /> */}
-      </div>
-    );
-  }
+
+      {/*  Уроки с плэйлиста* /}
+       {/* <Lesson_1 /> */}
+       {/* <Lesson_02 /> */}
+       {/* <Lesson_03 child={<Button />}>*/}
+       {/*   <Counter /> */}
+       {/* </Lesson_03>  */}
+       {/* <Lesson_06 /> */}
+       {/* <Lesson_07 /> */}
+       {/* <Lesson_08 /> */}
+       {/* <Lesson_09 /> */}
+       {/* <Lesson_10 /> */}
+       {/* <Lesson_11 /> */}
+       {/* <Lesson_12 /> */}
+       {/* <Lesson_13 /> */}
+       {/* <Lesson_14 /> */}
+    </div>
+  );
+
 }
+
+export default App;

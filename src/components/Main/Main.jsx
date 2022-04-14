@@ -5,7 +5,7 @@ import TodoList from "./TodoList";
 
 import "./Main.scss";
 
-const Main = ({ todos, onDeleted, add, onToggleDone, onToggleImportant }) => {
+const Main = ({ todos, onDeleted, add, onToggleDone, onToggleImportant, editItem, confirmEdit }) => {
   return (
     <section className="main">
       <TodoList
@@ -13,10 +13,12 @@ const Main = ({ todos, onDeleted, add, onToggleDone, onToggleImportant }) => {
         onDeleted={(id) => onDeleted(id)}
         onToggleDone={(id) => onToggleDone(id)}
         onToggleImportant={(id) => onToggleImportant(id)}
+        editItem={(id) => editItem(id)}
+        confirmEdit={(id) => confirmEdit(id)}
       />
       <ItemAddForm add={(text) => add(text)} />
     </section>
   );
-};
+}
 
 export default Main;

@@ -1,69 +1,39 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./ItemStatusFilter.scss";
 
-export default class ItemStatusFilter extends Component {
+const ItemStatusFilter = (props) => {
+  const { toDo, done, filter, clear } = props;
 
-  render() {
-    const {toDo, done, filter, clear} = this.props;
+  return (
+    <div className="footer-wrap">
+      <span className="todo-count">
+        | Active - {toDo}, done - {done} |
+      </span>
 
-    return (
-      <div className="footer-wrap">
-        <span className="todo-count">| Active - {toDo}, done - {done} |</span>
+      <ul className="filters">
+        <li onClick={() => filter("all")}>
+          <button className="selected">All</button>
+        </li>
 
-        <ul className="filters">
-          <li onClick={() => filter('all')}>
-            <button className="selected">All</button>
-          </li>
+        <li onClick={() => filter("active")}>
+          <button>Active</button>
+        </li>
 
-          <li onClick={() => filter('active')}>
-            <button>Active</button>
-          </li>
+        <li onClick={() => filter("completed")}>
+          <button>Completed</button>
+        </li>
+      </ul>
 
-          <li onClick={() => filter('completed')}>
-            <button>Completed</button>
-          </li>
-        </ul>
+      <button className="clear-completed" onClick={clear}>
+        Clear completed
+      </button>
+    </div>
+  );
+};
 
-        <button className="clear-completed"
-                onClick={clear}
-        >Clear completed</button>
-      </div>
-    );
-  }
-}
-
-
-
+export default ItemStatusFilter;
 
 
 
 
-
-
-
-
-// Old version
-// const ItemStatusFilter = (props) => {
-//   return (
-//     <div className="footer-wrap">
-//       <span className="todo-count">{props.count} items left</span>
-//
-//       <ul className="filters">
-//         <li>
-//           <button className="selected">All</button>
-//         </li>
-//         <li>
-//           <button>Active</button>
-//         </li>
-//         <li>
-//           <button>Completed</button>
-//         </li>
-//       </ul>
-//
-//       <button className="clear-completed">Clear completed</button>
-//     </div>
-//   );
-// };
-//
-// export default ItemStatusFilter;
