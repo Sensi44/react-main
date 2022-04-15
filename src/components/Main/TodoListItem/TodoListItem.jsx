@@ -3,14 +3,11 @@ import { formatDistanceToNow } from "date-fns";
 
 import "./TodoListItem.scss";
 
-
-
 const TodoListItem = (props) => {
-  const { label, onDeleted, onToggleDone, onToggleImportant, classname,
-          important, done, editItem, confirmEdit, id } = props;
+  const { label, onDeleted, onToggleDone, onToggleImportant, status,
+          important, editItem, confirmEdit} = props;
 
   let [labelInput, setLabel] = useState("");
-  let [curId, setCurId] = useState("");
 
   const onLabelChange = (e) => {
     let temp = e.target.value[0]?.toUpperCase() + e.target.value.slice(1);
@@ -19,14 +16,12 @@ const TodoListItem = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(curId);
     confirmEdit(labelInput);
     setLabel((labelInput = ""));
   };
 
   const onChange = (e) => {
     setLabel(e.target.value);
-    setCurId(id);
   };
 
   const style = {
@@ -36,7 +31,7 @@ const TodoListItem = (props) => {
   };
 
   let labelClassNames = "description";
-  classname === 'completed' ? (labelClassNames += " done") : (labelClassNames += "");
+  status === 'completed' ? (labelClassNames += " done") : (labelClassNames += "");
   important
     ? (labelClassNames += " description-important")
     : (labelClassNames += "");
