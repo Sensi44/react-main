@@ -31,11 +31,12 @@ body {
 
 .todoapp {
   width: 570px;
-  padding: 8px 8px 2px 8px;
+  padding: 16px 16px 1px 16px;
   background: #fff;
-  margin: 130px 2px 40px 2px;
+  margin: 130px 2px 40px 7px;
   position: relative;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .todoapp input::-webkit-input-placeholder {

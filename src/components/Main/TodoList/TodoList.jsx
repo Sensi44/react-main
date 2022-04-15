@@ -8,7 +8,6 @@ const TodoList = (props) => {
   const elements = todos.map((item, idx) => {
 
     const { status, ...itemProps } = item;
-
     return (
       <li key={idx} className={status}>
         <TodoListItem

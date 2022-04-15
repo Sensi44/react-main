@@ -27,7 +27,7 @@ const App = () => {
     {label: 'sleep', important: false, status: 'active'},
   ]);
   const [filterStatus, setFilterStatus] = useState('all');
-
+  const [curStatusData, setCurStatusData] = useState([])
 
   const createTodoItem = (label, status = "active") => {
     return {
@@ -53,8 +53,9 @@ const App = () => {
   };
 
   const onToggleDone = (id) => {
-    let current = todoData[id];
+    console.log(id);
     const temp = [...todoData];
+    let current = todoData[id];
     current.status = current.status === 'active' ? 'completed' : 'active';
     temp.splice(id, 1, current);
     setTodoData(temp);
@@ -93,6 +94,7 @@ const App = () => {
       case 'all':
         return items;
       case 'active':
+
         return items.filter((item => item.status === 'active'))
       case 'completed':
         return items.filter((item => item.status === 'completed'))
@@ -112,6 +114,8 @@ const App = () => {
 
   const doneCount = todoData.filter((el) => el.status === 'completed').length;
   const todoCount = todoData.length - doneCount;
+
+
 
   return (
     <div className="todoapp">
