@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 
 import "./ItemStatusFilter.scss";
 
 const ItemStatusFilter = (props) => {
-  const { toDo, done, filter, clear } = props;
+  const { toDo, done, filter, clear,filterStatus } = props;
 
   return (
     <div className="footer-wrap">
@@ -13,15 +13,15 @@ const ItemStatusFilter = (props) => {
 
       <ul className="filters">
         <li onClick={() => filter("all")}>
-          <button className="selected">All</button>
+          <button className={filterStatus === 'all' ? 'selected' : ''}>All</button>
         </li>
 
         <li onClick={() => filter("active")}>
-          <button>Active</button>
+          <button className={filterStatus === 'active' ? 'selected' : ''}>Active</button>
         </li>
 
         <li onClick={() => filter("completed")}>
-          <button>Completed</button>
+          <button className={filterStatus === 'completed' ? 'selected' : ''}>Completed</button>
         </li>
       </ul>
 

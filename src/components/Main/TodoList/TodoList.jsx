@@ -31,8 +31,9 @@ const TodoList = (props) => {
   //   }
   // }
 
+// idx todo
+  const elements = todos.map((item, idx) => {
 
-  const elements = todos.map((item) => {
     const { id, classname, ...itemProps } = item;
 
     return (
@@ -40,11 +41,11 @@ const TodoList = (props) => {
         <TodoListItem
           {...itemProps}
           classname={classname}
-          onDeleted={() => onDeleted(id)}
-          onToggleDone={() => onToggleDone(id)}
-          onToggleImportant={() => onToggleImportant(id)}
-          editItem={() => editItem(id)}
-          confirmEdit={(text) => confirmEdit(text, id)}
+          onDeleted={() => onDeleted(idx)}
+          onToggleDone={() => onToggleDone(idx)}
+          onToggleImportant={() => onToggleImportant(idx)}
+          editItem={() => editItem(idx)}
+          confirmEdit={(text) => confirmEdit(text, idx)}
           id={id}
         />
 

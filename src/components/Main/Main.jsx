@@ -5,9 +5,8 @@ import TodoList from "./TodoList";
 
 import "./Main.scss";
 
-const Main = ({ todos,
-                onDeleted, add, onToggleDone, onToggleImportant, editItem, confirmEdit }) => {
-
+const Main = ({ todos, onDeleted, add, onToggleDone,
+                onToggleImportant, editItem, confirmEdit }) => {
   return (
     <section className="main">
       <TodoList

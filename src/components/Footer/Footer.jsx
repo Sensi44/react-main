@@ -6,7 +6,7 @@ import "./Footer.scss";
 
 
 const Footer = (props) => {
-  const {toDo, done, filter, clear} = props;
+  const {toDo, done, filter, clear, filterStatus} = props;
   return (
     <footer className="footer">
       <ItemStatusFilter
@@ -14,7 +14,8 @@ const Footer = (props) => {
         done={done}
         filter={(f) => filter(f)}
         clear={() => clear()}
-      /> <br />
+        filterStatus={filterStatus}
+      />
     </footer>
   );
 };

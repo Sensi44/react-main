@@ -1,9 +1,9 @@
 .item-add-form {
-    padding: 5px;
+    padding: 5px 0px 5px 5px;
     display: flex;
-
-    width: 480px;
-    border: 1px solid black;
+    margin-left: 18px;
+    margin-top: 2px;
+    width: 545px;
 }
 
 
@@ -11,16 +11,34 @@
     background-color: #e6e6e6;
     padding: 4px;
     width: 100px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 18px;
 }
 
-
+.btn:hover {
+    background-color: #ff4f46;
+}
 
 .add-input {
     padding: 16px 16px 16px 10px;
     border: 1px solid cornflowerblue;
     background: rgba(0, 0, 0, 0.003);
-    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-    width: 100%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.23);
+    width: 429px;
     margin-right: 5px;
     font-size: 16px;
+    transition: 0.5s;
+}
+
+.blur {
+    border: 1px solid lightslategray;
+    width: 200px;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.53);
+}
+
+.add-input:focus + .btn {
+    background-color: #ff5248;
+    border-radius: 0 0 6px 0;
+    color: floralwhite;
 }

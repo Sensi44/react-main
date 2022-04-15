@@ -1,12 +1,12 @@
 import React from "react";
 import "./Header.scss";
-import HeaderSearchPanel from "./HeaderTitle";
-import HeaderTitle from "./HeaderSearchPanel";
+import HeaderTitle from "./HeaderTitle";
+import HeaderSearchPanel from "./HeaderSearchPanel";
 
 const Header = () => {
   return (
     <header className="header">
-      <HeaderSearchPanel />
+       {/*<HeaderSearchPanel />*/}
       <HeaderTitle />
     </header>
   );

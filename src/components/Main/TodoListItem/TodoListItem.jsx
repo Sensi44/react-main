@@ -1,16 +1,16 @@
-import React, {Fragment, useState} from "react";
+import React, { Fragment, useState } from "react";
+import { formatDistanceToNow } from "date-fns";
 
 import "./TodoListItem.scss";
 
+
+
 const TodoListItem = (props) => {
-  const { todos, label, onDeleted, onToggleDone, classname, itemProps,
-    onToggleImportant, important, done, editItem, confirmEdit, id
-  } = props;
-
-
+  const { label, onDeleted, onToggleDone, onToggleImportant, classname,
+          important, done, editItem, confirmEdit, id } = props;
 
   let [labelInput, setLabel] = useState("");
-  let [curId, setCurId] = useState('');
+  let [curId, setCurId] = useState("");
 
   const onLabelChange = (e) => {
     let temp = e.target.value[0]?.toUpperCase() + e.target.value.slice(1);
@@ -19,18 +19,15 @@ const TodoListItem = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(curId)
+    console.log(curId);
     confirmEdit(labelInput);
-    setLabel(labelInput = '')
-  }
+    setLabel((labelInput = ""));
+  };
 
   const onChange = (e) => {
-    console.log(e.target.value)
     setLabel(e.target.value);
-    console.log(props)
     setCurId(id);
-  }
-
+  };
 
   const style = {
     color: important ? "red" : "black",
@@ -39,63 +36,51 @@ const TodoListItem = (props) => {
   };
 
   let labelClassNames = "description";
-  done ? (labelClassNames += " done") : (labelClassNames += "");
+  classname === 'completed' ? (labelClassNames += " done") : (labelClassNames += "");
   important
     ? (labelClassNames += " description-important")
     : (labelClassNames += "");
 
+
   return (
     <Fragment>
-    <form onSubmit={onSubmit}>
-      <input type="text"
-             className="edit"
-             onChange={onLabelChange}
-             placeholder={label}
 
-             onKeyDown={onChange}
-        // onKeyUp={test}
-      />
-    </form>
+      <form onSubmit={onSubmit}>
+        <span className="edit-icon">ᴥ</span>
 
-    <div className="view">
+        <input
+          type="text"
+          className="edit"
+          onChange={onLabelChange}
+          placeholder={label}
+          onKeyDown={onChange}
+        />
+      </form>
 
+      <div className="view">
+        <span className="important" style={style}>
+          {""}
+          {important ? "!" : "~"}
 
-      <input type="checkbox" className="toggle" />
-      <span className="important" style={style}>
-        {" "}
-        {/* important flag */}
-        {important ? "!" : "~"}
-      </span>
-
-      <label>
-        {" "}
-        {/* main text */}
-        <span className={labelClassNames} onClick={onToggleDone}>
-          {label}
         </span>
-        <span className="created">created 17 seconds ago</span>
-      </label>
 
-      <button type="button"
-              className="icon icon-edit"
-              onClick={editItem}
-      /> {/* edit */}
+        <label>
+          {" "}
+          <span className={labelClassNames} onClick={onToggleDone}>
+            {label}
+          </span>
+          <span className="created">{formatDistanceToNow(new Date())}</span>
+        </label>
 
-      <button
-        type="button"
-        className="icon icon-destroy"
-        onClick={onDeleted}
-      />{" "} {/* delete */}
-
-      <button
-        type="button"
-        className="icon icon-important"
-        onClick={onToggleImportant}
-      />{" "} {/* important */}
-
-    </div>
+        <button type="button" className="icon icon-edit" onClick={editItem} />{" "}
+        {/* edit */}
+        <button type="button" className="icon icon-destroy" onClick={onDeleted}/>{" "}
+        {/* delete */}
+        <button type="button" className="icon icon-important" onClick={onToggleImportant}/>{" "}
+        {/* important */}
+      </div>
     </Fragment>
   );
-}
+};
 
 export default TodoListItem

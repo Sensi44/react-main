@@ -1,6 +1,4 @@
-html {
-    height: 100%;
-}
+html { height: 100%; }
 
 body {
     display: flex;
@@ -31,7 +29,7 @@ body {
 
 .todoapp {
     width: 570px;
-    padding: 8px;
+    padding: 8px 8px 2px 8px;
     background: #fff;
     margin: 130px 2px 40px 2px;
     position: relative;

@@ -22,8 +22,16 @@ import "./App.scss";
 const App = () => {
   let maxId =  useRef(100);
 
+  const [todoData, setTodoData] = useState([
+    {label: 'Drink Coffee', important: false, id: 96, classname: 'active', done: false},
+    {label: 'Editing task !', important: false, id: 97, classname: 'editing', done: false},
+    {label: 'work,sleep, repeat', important: true, id: 98, classname: 'active', done: false},
+    {label: 'sleep', important: false, id: 99, classname: 'active', done: false},
+  ]);
+  const [filterStatus, setFilterStatus] = useState('all');
+
+  // Создание, удаление, добавление
   const createTodoItem = (label, classname = "active") => {
-    // console.log(maxId.current)
     return {
       label,
       important: false,
@@ -33,36 +41,17 @@ const App = () => {
     };
   }
 
-  const [todoData, setTodoData] = useState([
-    createTodoItem("Drink Coffee", "active"),
-    createTodoItem("Editing task !", "editing"),
-    createTodoItem("work,sleep, repeat", "active"),
-    createTodoItem("sleep", "active"),
-  ]);
-  const [filterStatus, setFilterStatus] = useState('all');
-
-
   const addItem = (text) => {
     const newItem = createTodoItem(text);
-    const newArray = [...todoData, newItem];
-    setTodoData(newArray);
+    setTodoData([...todoData, newItem]);
   };
 
-  const deleteItem = (id) => {
-    const idx = todoData.findIndex((el) => el.id === id);
-    const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)]
-    setTodoData(newArray);
-  };
 
   const toggleProperty = (arr, id, propName, text) => {
-
     const idx = arr.findIndex((el) => el.id === id);
     const oldItem = arr[idx];
 
-
     if(propName==='done') {
-      console.log(oldItem.classname)
-
       let classname = (oldItem.classname === 'active')
       ? 'completed'
       : 'active';
@@ -70,17 +59,18 @@ const App = () => {
       return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
     }
 
-
-    if (arr[idx].classname === 'editing') {
+    if (propName === 'confirm') {
       let old = arr[idx].classname;
-      console.log(old)
+      console.log(old, 'Тот самый момент')
       const newItem = { ...oldItem, classname: arr[idx].done ? 'completed' : 'active', label : text };
       return [...arr.slice(0, idx), newItem, ...arr.slice(idx + 1)];
     }
 
     if (propName === 'classname') {
+      console.log('Тот самый момент');
       arr.forEach((el) => {
         if ( el.id !== id) {
+          console.log(el.classname);
           el.classname = (el.classname === 'editing') ? 'active' : el.classname
         }
       })
@@ -94,28 +84,47 @@ const App = () => {
   }
 
 
+  // Основные методы
 
-  const onToggleDone = (id) => {
-    setTodoData(toggleProperty(todoData, id, "done"));
+  const deleteItem = (id) => {
+    const temp = [...todoData];
+    temp.splice(id, 1);
+    setTodoData(temp);
   };
 
+  const onToggleDone = (id) => {
+    let current = todoData[id];
+    const temp = [...todoData];
+    current.classname = current.classname === 'active' ? 'completed' : 'active';
+    temp.splice(id, 1, current);
+    setTodoData(temp);
+  };
 
   const onToggleImportant = (id) => {
-    setTodoData(toggleProperty(todoData, id, "important"));
+    let current = todoData[id];
+    current.important = !current.important;
+    setTodoData([...todoData.slice(0, id), current, ...todoData.slice(id + 1)]);
+    console.table(todoData);
   };
 
   const editItem = (id) => {
-    console.log(id)
-    setTodoData(toggleProperty(todoData, id, "classname"));
+    let current = [...todoData];
+    current.forEach((el, idx) => {
+        if ( idx !== id) {
+          el.classname = (el.classname === 'editing') ? 'active' : el.classname
+        } else {
+          el.classname = 'editing'
+        }
+      })
+    setTodoData([...todoData.slice(0, id), current[id], ...todoData.slice(id + 1)]);
   }
 
   const confirmEdit = (text, id) => {
-    console.log(text, id)
-    setTodoData(toggleProperty(todoData, id, "classname", text));
+    const newItem = { ...todoData[id], label : text, classname: 'active' };
+    setTodoData([...todoData.slice(0, id), newItem, ...todoData.slice(id + 1)]);
   }
 
   const filter2 = (items, filterType) => {
-    // console.log(items, filterType);
     switch(filterType) {
       case 'all':
         return items;
@@ -129,18 +138,17 @@ const App = () => {
   }
 
   const filter = (filterType) => {
-    setFilterStatus(filterType)
+    setFilterStatus(filterType);
   }
 
   const clearAll = () => {
-    setTodoData([]);
+    let newData = todoData.filter(el => el.classname === 'active' || el.classname === 'editing')
+    console.log(newData);
+    setTodoData(newData);
   }
 
-
-  const doneCount = todoData.filter((el) => el.done).length;
+  const doneCount = todoData.filter((el) => el.classname === 'completed').length;
   const todoCount = todoData.length - doneCount;
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
 
 
   return (
@@ -161,6 +169,7 @@ const App = () => {
         done={doneCount}
         filter={(f) => filter(f)}
         clear={clearAll}
+        filterStatus={filterStatus}
       />
 
 
