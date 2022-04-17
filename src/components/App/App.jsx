@@ -1,4 +1,5 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, {useState, useRef, useMemo, useEffect} from "react";
+import { formatDistance} from 'date-fns'
 
 import Header from "../Header";
 import Main from "../Main";
@@ -20,14 +21,16 @@ import Footer from "../Footer";
 import "./App.scss";
 
 const App = () => {
+ 
   const [todoData, setTodoData] = useState([
-    {label: 'Drink Coffee', important: false, status: 'active'},
-    {label: 'Editing task !', important: false, status: 'editing'},
-    {label: 'work,sleep, repeat', important: true, status: 'active'},
-    {label: 'sleep', important: false, status: 'active'},
+    {label: 'Drink Coffee', important: false, status: 'active',      createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now'},
+    // {label: 'Editing task !', important: false, status: 'editing',   createdAt: 1650210860548, updatedAt: '', diffTime: ''},
+    {label: 'work,sleep, repeat', important: true, status: 'active', createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now'},
+    {label: 'sleep', important: false, status: 'active',             createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now'},
   ]);
   const [filterStatus, setFilterStatus] = useState('all');
-  const [curStatusData, setCurStatusData] = useState([])
+
+  useEffect(() => mapperDiffTime(todoData), [todoData])
 
   const createTodoItem = (label, status = "active") => {
     return {
@@ -35,8 +38,29 @@ const App = () => {
       important: false,
       status,
       done: false,
+      createdAt: new Date().getTime(),
+      updatedAt: new Date().getTime(),
+      diffTime: 'now',
     };
   }
+
+
+
+  const mapperDiffTime = (arr) => {
+    arr.map((item) => {
+      item.updatedAt = new Date().getTime()
+      item.diffTime = formatDistance(
+        new Date(item.updatedAt),
+        new Date(item.createdAt),
+        {
+          includeSeconds: true
+        }
+      )
+      // console.log(item)
+      return { ...item }
+    })
+  }
+
 
   const addItem = (text) => {
     const newItem = createTodoItem(text);
@@ -53,11 +77,11 @@ const App = () => {
   };
 
   const onToggleDone = (id) => {
-    console.log(id);
     const temp = [...todoData];
     let current = todoData[id];
     current.status = current.status === 'active' ? 'completed' : 'active';
     temp.splice(id, 1, current);
+    // temp.push(current);
     setTodoData(temp);
   };
 
@@ -102,6 +126,7 @@ const App = () => {
         return items
     }
   }
+
 
   const filter = (filterType) => {
     setFilterStatus(filterType);

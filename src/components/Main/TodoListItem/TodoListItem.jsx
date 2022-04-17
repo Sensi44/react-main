@@ -4,8 +4,9 @@ import { formatDistanceToNow } from "date-fns";
 import "./TodoListItem.scss";
 
 const TodoListItem = (props) => {
+  console.log(props)
   const { label, onDeleted, onToggleDone, onToggleImportant, status,
-          important, editItem, confirmEdit} = props;
+          important, editItem, confirmEdit, diffTime} = props;
 
   let [labelInput, setLabel] = useState("");
 
@@ -64,7 +65,7 @@ const TodoListItem = (props) => {
           <span className={labelClassNames} onClick={onToggleDone}>
             {label}
           </span>
-          <span className="created">{formatDistanceToNow(new Date())}</span>
+          <span className="created">{diffTime}</span>
         </label>
 
         <button type="button" className="icon icon-edit" onClick={editItem} />{" "}
