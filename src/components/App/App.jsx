@@ -4,6 +4,7 @@ import { formatDistance} from 'date-fns'
 import Header from "../Header";
 import Main from "../Main";
 import Footer from "../Footer";
+import Grid from "../Grid/Grid";
 
 // import  Lesson_1 from "../../lessons/01_hooks";
 // import  Lesson_02 from "../../lessons/02_hooks";
@@ -19,16 +20,18 @@ import Footer from "../Footer";
 // import  Lesson_14 from "../../lessons/14_react-portal";
 
 import "./App.scss";
-
+let maxId = 100;
 const App = () => {
- 
+
+
   const [todoData, setTodoData] = useState([
-    {label: 'Drink Coffee', important: false, status: 'active',      createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now'},
-    // {label: 'Editing task !', important: false, status: 'editing',   createdAt: 1650210860548, updatedAt: '', diffTime: ''},
-    {label: 'work,sleep, repeat', important: true, status: 'active', createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now'},
-    {label: 'sleep', important: false, status: 'active',             createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now'},
+    {label: 'Drink Coffee', important: false, status: 'active',      createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now',id: 1,},
+    // {label: 'Editing task !', important: false, status: 'editing',   createdAt: 1650210860548, updatedAt: '', diffTime: '', id: 2,},
+    {label: 'work,sleep, repeat', important: true, status: 'active', createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now', id: 3,},
+    {label: 'sleep', important: false, status: 'active',             createdAt: new Date().getTime(), updatedAt: '', diffTime: 'now', id: 4,},
   ]);
   const [filterStatus, setFilterStatus] = useState('all');
+  const [oldStatus, setOldStatus] = useState('active')
 
   useEffect(() => mapperDiffTime(todoData), [todoData])
 
@@ -37,7 +40,7 @@ const App = () => {
       label,
       important: false,
       status,
-      done: false,
+      id: maxId++,
       createdAt: new Date().getTime(),
       updatedAt: new Date().getTime(),
       diffTime: 'now',
@@ -77,31 +80,35 @@ const App = () => {
   };
 
   const onToggleDone = (id) => {
+    const idx = todoData.findIndex((el) => el.id === id);
+    const current = todoData[idx];
     const temp = [...todoData];
-    let current = todoData[id];
     current.status = current.status === 'active' ? 'completed' : 'active';
-    temp.splice(id, 1, current);
-    // temp.push(current);
+    temp.splice(idx, 1, current)
     setTodoData(temp);
   };
 
   const onToggleImportant = (id) => {
-    let current = todoData[id];
-    current.important = !current.important;
+    const idx = todoData.findIndex((el) => el.id === id);
+    const current = todoData[idx];
     const temp = [...todoData];
-    temp.splice(id, 1, current);
+    current.important = !current.important;
+    temp.splice(idx, 1, current);
     setTodoData(temp);
     console.table(todoData);
   };
 
   const editItem = (id) => {
+    console.table(todoData);
+
     let temp = [...todoData];
     let current = [...todoData];
     current.forEach((el, idx) => {
         if ( idx !== id) {
           el.status = (el.status === 'editing') ? 'active' : el.status
         } else {
-          el.status = 'editing'
+          setOldStatus(el.status);
+          el.status = 'editing';
         }
       })
     temp.splice(id, 1, current[id])
@@ -109,7 +116,7 @@ const App = () => {
   }
 
   const confirmEdit = (text, id) => {
-    const newItem = { ...todoData[id], label : text, status: 'active' };
+    const newItem = { ...todoData[id], label : text, status: oldStatus };
     setTodoData([...todoData.slice(0, id), newItem, ...todoData.slice(id + 1)]);
   }
 
@@ -162,7 +169,13 @@ const App = () => {
         clear={clearAll}
         filterStatus={filterStatus}
       />
+      <Grid>
 
+          <a href="">1</a>
+          <a href="">2</a>
+          <a href="">3</a>
+
+      </Grid>
 
       {/*  Уроки с плэйлиста* /}
        {/* <Lesson_1 /> */}

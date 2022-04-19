@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react";
-import { formatDistanceToNow } from "date-fns";
+import PropTypes from 'prop-types';
 
 import "./TodoListItem.scss";
+import TodoList from "../TodoList";
+
 
 const TodoListItem = (props) => {
-  console.log(props)
   const { label, onDeleted, onToggleDone, onToggleImportant, status,
           important, editItem, confirmEdit, diffTime} = props;
 
@@ -78,5 +79,20 @@ const TodoListItem = (props) => {
     </Fragment>
   );
 };
+
+TodoListItem.defaultProps = {
+  onToggleDone: () => {console.log("Дефолтное значение toggle done")},
+  onToggleImportant: () => {console.log("Дефолтное значение important")},
+}
+
+TodoListItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  status: PropTypes.string,
+  important: PropTypes.bool,
+  onToggleDone: PropTypes.func,
+  //
+}
+
+
 
 export default TodoListItem

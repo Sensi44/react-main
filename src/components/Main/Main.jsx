@@ -7,6 +7,8 @@ import "./Main.scss";
 
 const Main = ({ todos, onDeleted, add, onToggleDone,
                 onToggleImportant, editItem, confirmEdit }) => {
+
+
   return (
     <section className="main">
       <TodoList
@@ -16,8 +18,12 @@ const Main = ({ todos, onDeleted, add, onToggleDone,
         onToggleImportant={(id) => onToggleImportant(id)}
         editItem={(id) => editItem(id)}
         confirmEdit={(text, id) => confirmEdit(text, id)}
+
       />
+
       <ItemAddForm add={(text) => add(text)} />
+
+
     </section>
   );
 }
