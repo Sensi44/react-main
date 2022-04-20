@@ -1,25 +1,26 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import "./TodoListItem.scss";
-import TodoList from "../TodoList";
+import './TodoListItem.scss';
 
+function TodoListItem(props) {
+  const {
+    label, onDeleted, onToggleDone, onToggleImportant, status,
+    important, editItem, confirmEdit, diffTime,
+  } = props;
 
-const TodoListItem = (props) => {
-  const { label, onDeleted, onToggleDone, onToggleImportant, status,
-          important, editItem, confirmEdit, diffTime} = props;
-
-  let [labelInput, setLabel] = useState("");
+  // eslint-disable-next-line prefer-const
+  let [labelInput, setLabel] = useState('');
 
   const onLabelChange = (e) => {
-    let temp = e.target.value[0]?.toUpperCase() + e.target.value.slice(1);
-    setLabel((labelInput = temp === "undefined" ? "" : temp));
+    const temp = e.target.value[0].toUpperCase() + e.target.value.slice(1);
+    setLabel((labelInput = temp === 'undefined' ? '' : temp));
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     confirmEdit(labelInput);
-    setLabel((labelInput = ""));
+    setLabel((labelInput = ''));
   };
 
   const onChange = (e) => {
@@ -27,21 +28,17 @@ const TodoListItem = (props) => {
   };
 
   const style = {
-    color: important ? "red" : "black",
-    fontWeight: important ? "bold" : "normal",
+    color: important ? 'red' : 'black',
+    fontWeight: important ? 'bold' : 'normal',
     fontSize: 27,
   };
 
-  let labelClassNames = "description";
-  status === 'completed' ? (labelClassNames += " done") : (labelClassNames += "");
-  important
-    ? (labelClassNames += " description-important")
-    : (labelClassNames += "");
-
+  let labelClassNames = 'description';
+  labelClassNames += (status === 'completed') ? (' done') : ('');
+  labelClassNames += (important) ? (' description-important') : ('');
 
   return (
-    <Fragment>
-
+    <>
       <form onSubmit={onSubmit}>
         <span className="edit-icon">ᴥ</span>
 
@@ -56,43 +53,54 @@ const TodoListItem = (props) => {
 
       <div className="view">
         <span className="important" style={style}>
-          {""}
-          {important ? "!" : "~"}
+
+          {important ? '!' : '~'}
 
         </span>
 
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label>
-          {" "}
-          <span className={labelClassNames} onClick={onToggleDone}>
+          {' '}
+          {/* eslint-disable-next-line max-len */}
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/interactive-supports-focus */}
+          <span role="menuitem" className={labelClassNames} onClick={onToggleDone}>
             {label}
           </span>
           <span className="created">{diffTime}</span>
         </label>
 
-        <button type="button" className="icon icon-edit" onClick={editItem} />{" "}
-        {/* edit */}
-        <button type="button" className="icon icon-destroy" onClick={onDeleted}/>{" "}
-        {/* delete */}
-        <button type="button" className="icon icon-important" onClick={onToggleImportant}/>{" "}
-        {/* important */}
+        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+        <button type="button" className="icon icon-edit" onClick={editItem} />
+        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+        <button type="button" className="icon icon-destroy" onClick={onDeleted} />
+        {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+        <button type="button" className="icon icon-important" onClick={onToggleImportant} />
       </div>
-    </Fragment>
+    </>
   );
-};
+}
 
 TodoListItem.defaultProps = {
-  onToggleDone: () => {console.log("Дефолтное значение toggle done")},
-  onToggleImportant: () => {console.log("Дефолтное значение important")},
-}
+  important: false,
+  status: 'active',
+  onToggleDone: () => {},
+  onToggleImportant: () => {},
+  onDeleted: () => {},
+  diffTime: 'Время не пришло',
+  confirmEdit: () => {},
+  editItem: () => {},
+};
 
 TodoListItem.propTypes = {
   label: PropTypes.string.isRequired,
   status: PropTypes.string,
+  diffTime: PropTypes.string,
   important: PropTypes.bool,
   onToggleDone: PropTypes.func,
-  //
-}
+  onDeleted: PropTypes.func,
+  onToggleImportant: PropTypes.func,
+  confirmEdit: PropTypes.func,
+  editItem: PropTypes.func,
+};
 
-
-
-export default TodoListItem
+export default TodoListItem;

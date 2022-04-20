@@ -1,14 +1,14 @@
-import React from "react";
-import ItemAddForm from "./ItemAddForm";
+import React from 'react';
 
-import TodoList from "./TodoList";
+import PropTypes from 'prop-types';
+import ItemAddForm from './ItemAddForm';
+import TodoList from './TodoList';
+import './Main.scss';
 
-import "./Main.scss";
-
-const Main = ({ todos, onDeleted, add, onToggleDone,
-                onToggleImportant, editItem, confirmEdit }) => {
-
-
+function Main({
+  todos, onDeleted, add, onToggleDone,
+  onToggleImportant, editItem, confirmEdit,
+}) {
   return (
     <section className="main">
       <TodoList
@@ -18,14 +18,32 @@ const Main = ({ todos, onDeleted, add, onToggleDone,
         onToggleImportant={(id) => onToggleImportant(id)}
         editItem={(id) => editItem(id)}
         confirmEdit={(text, id) => confirmEdit(text, id)}
-
       />
-
       <ItemAddForm add={(text) => add(text)} />
-
-
     </section>
   );
 }
+
+Main.defaultProps = {
+  todos: [],
+  onToggleDone: () => {},
+  onToggleImportant: () => {},
+  onDeleted: () => {},
+  add: () => {},
+  editItem: () => {},
+  confirmEdit: () => {},
+};
+
+Main.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+  })),
+  onDeleted: PropTypes.func,
+  add: PropTypes.func,
+  onToggleDone: PropTypes.func,
+  onToggleImportant: PropTypes.func,
+  editItem: PropTypes.func,
+  confirmEdit: PropTypes.func,
+};
 
 export default Main;

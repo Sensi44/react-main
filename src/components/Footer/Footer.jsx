@@ -1,12 +1,13 @@
-import React from "react";
-import ItemStatusFilter from "./ItemStatusFilter";
+import React from 'react';
+import PropTypes from 'prop-types';
+import ItemStatusFilter from './ItemStatusFilter';
 
+import './Footer.scss';
 
-import "./Footer.scss";
-
-
-const Footer = (props) => {
-  const {toDo, done, filter, clear, filterStatus} = props;
+function Footer(props) {
+  const {
+    toDo, done, filter, clear, filterStatus,
+  } = props;
   return (
     <footer className="footer">
       <ItemStatusFilter
@@ -18,6 +19,22 @@ const Footer = (props) => {
       />
     </footer>
   );
+}
+
+Footer.defaultProps = {
+  toDo: 0,
+  done: 0,
+  filter: () => {},
+  clear: () => {},
+  filterStatus: 'all',
+};
+
+Footer.propTypes = {
+  toDo: PropTypes.number,
+  done: PropTypes.number,
+  filterStatus: PropTypes.string,
+  clear: PropTypes.func,
+  filter: PropTypes.func,
 };
 
 export default Footer;

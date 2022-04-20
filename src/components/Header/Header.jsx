@@ -1,15 +1,14 @@
-import React from "react";
-import "./Header.scss";
-import HeaderTitle from "./HeaderTitle";
-import HeaderSearchPanel from "./HeaderSearchPanel";
+import React from 'react';
+import HeaderTitle from './HeaderTitle';
 
-const Header = () => {
+import './Header.scss';
+
+function Header() {
   return (
     <header className="header">
-       {/*<HeaderSearchPanel />*/}
       <HeaderTitle />
     </header>
   );
-};
+}
 
 export default Header;
