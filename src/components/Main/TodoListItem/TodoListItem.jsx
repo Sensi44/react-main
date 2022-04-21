@@ -6,7 +6,7 @@ import './TodoListItem.scss';
 function TodoListItem(props) {
   const {
     label, onDeleted, onToggleDone, onToggleImportant, status,
-    important, editItem, confirmEdit, diffTime,
+    important, editItem, confirmEdit, diffTime
   } = props;
 
   // eslint-disable-next-line prefer-const
@@ -30,7 +30,7 @@ function TodoListItem(props) {
   const style = {
     color: important ? 'red' : 'black',
     fontWeight: important ? 'bold' : 'normal',
-    fontSize: 27,
+    fontSize: 27
   };
 
   let labelClassNames = 'description';
@@ -88,7 +88,7 @@ TodoListItem.defaultProps = {
   onDeleted: () => {},
   diffTime: 'Время не пришло',
   confirmEdit: () => {},
-  editItem: () => {},
+  editItem: () => {}
 };
 
 TodoListItem.propTypes = {
@@ -100,7 +100,7 @@ TodoListItem.propTypes = {
   onDeleted: PropTypes.func,
   onToggleImportant: PropTypes.func,
   confirmEdit: PropTypes.func,
-  editItem: PropTypes.func,
+  editItem: PropTypes.func
 };
 
 export default TodoListItem;

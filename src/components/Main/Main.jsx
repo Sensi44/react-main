@@ -7,7 +7,7 @@ import './Main.scss';
 
 function Main({
   todos, onDeleted, add, onToggleDone,
-  onToggleImportant, editItem, confirmEdit,
+  onToggleImportant, editItem, confirmEdit
 }) {
   return (
     <section className="main">
@@ -31,19 +31,19 @@ Main.defaultProps = {
   onDeleted: () => {},
   add: () => {},
   editItem: () => {},
-  confirmEdit: () => {},
+  confirmEdit: () => {}
 };
 
 Main.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
   })),
   onDeleted: PropTypes.func,
   add: PropTypes.func,
   onToggleDone: PropTypes.func,
   onToggleImportant: PropTypes.func,
   editItem: PropTypes.func,
-  confirmEdit: PropTypes.func,
+  confirmEdit: PropTypes.func
 };
 
 export default Main;

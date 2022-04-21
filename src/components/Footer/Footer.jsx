@@ -6,7 +6,7 @@ import './Footer.scss';
 
 function Footer(props) {
   const {
-    toDo, done, filter, clear, filterStatus,
+    toDo, done, filter, clear, filterStatus
   } = props;
   return (
     <footer className="footer">
@@ -26,7 +26,7 @@ Footer.defaultProps = {
   done: 0,
   filter: () => {},
   clear: () => {},
-  filterStatus: 'all',
+  filterStatus: 'all'
 };
 
 Footer.propTypes = {
@@ -34,7 +34,7 @@ Footer.propTypes = {
   done: PropTypes.number,
   filterStatus: PropTypes.string,
   clear: PropTypes.func,
-  filter: PropTypes.func,
+  filter: PropTypes.func
 };
 
 export default Footer;

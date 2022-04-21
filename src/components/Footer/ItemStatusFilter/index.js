@@ -1,2 +1,3 @@
-import ItemStatusFilter from "./ItemStatusFilter";
+import ItemStatusFilter from './ItemStatusFilter.jsx';
+
 export default ItemStatusFilter;

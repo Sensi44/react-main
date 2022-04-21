@@ -5,7 +5,7 @@ import './ItemStatusFilter.scss';
 
 function ItemStatusFilter(props) {
   const {
-    toDo, done, filter, clear, filterStatus,
+    toDo, done, filter, clear, filterStatus
   } = props;
 
   return (
@@ -22,14 +22,20 @@ function ItemStatusFilter(props) {
       </span>
 
       <ul className="filters">
+        {/* eslint-disable-next-line max-len */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <li onClick={() => filter('all')}>
           <button type="button" className={filterStatus === 'all' ? 'selected' : ''}>All</button>
         </li>
 
+        {/* eslint-disable-next-line max-len */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <li onClick={() => filter('active')}>
           <button type="button" className={filterStatus === 'active' ? 'selected' : ''}>Active</button>
         </li>
 
+        {/* eslint-disable-next-line max-len */}
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <li onClick={() => filter('completed')}>
           <button type="button" className={filterStatus === 'completed' ? 'selected' : ''}>Completed</button>
         </li>
@@ -47,7 +53,7 @@ ItemStatusFilter.defaultProps = {
   done: 0,
   filter: () => {},
   clear: () => {},
-  filterStatus: 'all',
+  filterStatus: 'all'
 };
 
 ItemStatusFilter.propTypes = {
@@ -55,7 +61,7 @@ ItemStatusFilter.propTypes = {
   done: PropTypes.number,
   filterStatus: PropTypes.string,
   clear: PropTypes.func,
-  filter: PropTypes.func,
+  filter: PropTypes.func
 };
 
 export default ItemStatusFilter;

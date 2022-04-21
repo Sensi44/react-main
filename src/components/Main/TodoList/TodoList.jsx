@@ -11,12 +11,12 @@ function TodoList(props) {
     onToggleDone,
     onToggleImportant,
     editItem,
-    confirmEdit,
+    confirmEdit
   } = props;
 
   const elements = todos.map((item, idx) => {
     const {
-      id, status, label, important, diffTime,
+      id, status, label, important, diffTime
     } = item;
     return (
       <li key={`${id}-super-key`} className={status}>
@@ -49,18 +49,18 @@ TodoList.defaultProps = {
   onToggleImportant: () => {},
   onDeleted: () => {},
   editItem: () => {},
-  confirmEdit: () => {},
+  confirmEdit: () => {}
 };
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
   })),
   onDeleted: PropTypes.func,
   onToggleDone: PropTypes.func,
   onToggleImportant: PropTypes.func,
   editItem: PropTypes.func,
-  confirmEdit: PropTypes.func,
+  confirmEdit: PropTypes.func
 };
 
 export default TodoList;

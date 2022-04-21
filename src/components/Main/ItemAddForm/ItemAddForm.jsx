@@ -40,17 +40,17 @@ function ItemAddForm(props) {
         placeholder="What needs to be done"
         value={label}
       />
-      <button type="button" className="btn">Add Item</button>
+      <button type="submit" className="btn" onClick={onSubmit}>Add Item</button>
     </form>
   );
 }
 
 ItemAddForm.defaultProps = {
-  add: () => {},
+  add: () => {}
 };
 
 ItemAddForm.propTypes = {
-  add: PropTypes.func,
+  add: PropTypes.func
 };
 
 export default ItemAddForm;

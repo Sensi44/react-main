@@ -3,10 +3,11 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
+    "extends": [                     // Массив конфигураций
         "eslint:recommended",
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb/base",
+        "plugin:jsx-a11y/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -16,8 +17,17 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "jsx-a11y"
     ],
     "rules": {
+        "linebreak-style": 0,
+        "comma-dangle": ["error", {
+            "arrays": "never",
+            "objects": "never",
+            "imports": "never",
+            "exports": "never",
+            "functions": "never"
+        }]
     }
 }

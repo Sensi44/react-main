@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
 import { formatDistance } from 'date-fns';
-
 import Header from '../Header';
 import Main from '../Main';
 import Footer from '../Footer';
@@ -31,9 +29,10 @@ function App() {
       createdAt: new Date().getTime(),
       updatedAt: '',
       diffTime: 'now',
-      id: 1,
+      id: 1
     },
-    // {label: 'Editing task !', important: false, status: 'editing',   createdAt: 1650210860548, updatedAt: '', diffTime: '', id: 2,},
+    // {label: 'Editing task !', important: false, status: 'editing',
+    // createdAt: 1650210860548, updatedAt: '', diffTime: '', id: 2,},
     {
       label: 'work,sleep, repeat',
       important: true,
@@ -41,7 +40,7 @@ function App() {
       createdAt: new Date().getTime(),
       updatedAt: '',
       diffTime: 'now',
-      id: 3,
+      id: 3
     },
     {
       label: 'sleep',
@@ -50,28 +49,30 @@ function App() {
       createdAt: new Date().getTime(),
       updatedAt: '',
       diffTime: 'now',
-      id: 4,
-    },
+      id: 4
+    }
   ]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [oldStatus, setOldStatus] = useState('active');
 
-  useEffect(() => mapperDiffTime(todoData), [todoData]);
-
-  const createTodoItem = (label, status = 'active') => ({
-    label,
-    important: false,
-    status,
-    id: maxId++,
-    createdAt: new Date().getTime(),
-    updatedAt: new Date().getTime(),
-    diffTime: 'now',
-  });
+  const createTodoItem = (label) => {
+    maxId += 1;
+    return {
+      label,
+      important: false,
+      status: 'active',
+      id: maxId,
+      createdAt: new Date().getTime(),
+      updatedAt: new Date().getTime(),
+      diffTime: 'now'
+    };
+  };
 
   const mapperDiffTime = (arr) => {
     arr.map((item) => {
-      item.updatedAt = new Date().getTime();
-      item.diffTime = formatDistance(
+      const temp = item;
+      temp.updatedAt = new Date().getTime();
+      temp.diffTime = formatDistance(
         new Date(item.updatedAt),
         new Date(item.createdAt),
         { includeSeconds: true }
@@ -81,7 +82,7 @@ function App() {
     });
   };
 
-
+  useEffect(() => mapperDiffTime(todoData), [todoData]);
 
   const addItem = (text) => {
     const newItem = createTodoItem(text);
@@ -117,15 +118,15 @@ function App() {
 
   const editItem = (id) => {
     console.table(todoData);
-
     const temp = [...todoData];
     const current = [...todoData];
     current.forEach((el, idx) => {
+      const cur = el;
       if (idx !== id) {
-        el.status = el.status === 'editing' ? 'active' : el.status;
+        cur.status = el.status === 'editing' ? 'active' : el.status;
       } else {
         setOldStatus(el.status);
-        el.status = 'editing';
+        cur.status = 'editing';
       }
     });
     temp.splice(id, 1, current[id]);
@@ -150,7 +151,7 @@ function App() {
       case 'all':
         return items;
       case 'active':
-        return items.filter((item) => item.status === 'active');
+        return items.filter((item) => item.status === 'active' || item.status === 'editing');
       case 'completed':
         return items.filter((item) => item.status === 'completed');
       default:
@@ -161,11 +162,9 @@ function App() {
   const filter = (filterType) => {
     setFilterStatus(filterType);
   };
-  
+
   const clearAll = () => {
-    const newData = todoData.filter(
-      (el) => el.status === 'active' || el.status === 'editing',
-);
+    const newData = todoData.filter((el) => el.status === 'active' || el.status === 'editing');
     setTodoData(newData);
   };
 
