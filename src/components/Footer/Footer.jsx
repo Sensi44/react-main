@@ -5,11 +5,9 @@ import ItemStatusFilter from './ItemStatusFilter';
 import './Footer.scss';
 
 function Footer(props) {
-  const {
-    toDo, done, filter, clear, filterStatus
-  } = props;
+  const { toDo, done, filter, clear, filterStatus } = props;
   return (
-    <footer className="footer">
+    <footer className='footer'>
       <ItemStatusFilter
         toDo={toDo}
         done={done}
@@ -26,7 +24,7 @@ Footer.defaultProps = {
   done: 0,
   filter: () => {},
   clear: () => {},
-  filterStatus: 'all'
+  filterStatus: 'all',
 };
 
 Footer.propTypes = {
@@ -34,7 +32,7 @@ Footer.propTypes = {
   done: PropTypes.number,
   filterStatus: PropTypes.string,
   clear: PropTypes.func,
-  filter: PropTypes.func
+  filter: PropTypes.func,
 };
 
 export default Footer;

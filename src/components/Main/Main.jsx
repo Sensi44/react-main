@@ -6,11 +6,16 @@ import TodoList from './TodoList';
 import './Main.scss';
 
 function Main({
-  todos, onDeleted, add, onToggleDone,
-  onToggleImportant, editItem, confirmEdit
+  todos,
+  onDeleted,
+  add,
+  onToggleDone,
+  onToggleImportant,
+  editItem,
+  confirmEdit,
 }) {
   return (
-    <section className="main">
+    <section className='main'>
       <TodoList
         todos={todos}
         onDeleted={(id) => onDeleted(id)}
@@ -26,24 +31,21 @@ function Main({
 
 Main.defaultProps = {
   todos: [],
-  onToggleDone: () => {},
-  onToggleImportant: () => {},
-  onDeleted: () => {},
   add: () => {},
-  editItem: () => {},
-  confirmEdit: () => {}
 };
 
 Main.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired
-  })),
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+    })
+  ),
   onDeleted: PropTypes.func,
   add: PropTypes.func,
   onToggleDone: PropTypes.func,
   onToggleImportant: PropTypes.func,
   editItem: PropTypes.func,
-  confirmEdit: PropTypes.func
+  confirmEdit: PropTypes.func,
 };
 
 export default Main;

@@ -29,7 +29,7 @@ function App() {
       createdAt: new Date().getTime(),
       updatedAt: '',
       diffTime: 'now',
-      id: 1
+      id: 1,
     },
     // {label: 'Editing task !', important: false, status: 'editing',
     // createdAt: 1650210860548, updatedAt: '', diffTime: '', id: 2,},
@@ -40,7 +40,7 @@ function App() {
       createdAt: new Date().getTime(),
       updatedAt: '',
       diffTime: 'now',
-      id: 3
+      id: 3,
     },
     {
       label: 'sleep',
@@ -49,8 +49,8 @@ function App() {
       createdAt: new Date().getTime(),
       updatedAt: '',
       diffTime: 'now',
-      id: 4
-    }
+      id: 4,
+    },
   ]);
   const [filterStatus, setFilterStatus] = useState('all');
   const [oldStatus, setOldStatus] = useState('active');
@@ -64,7 +64,7 @@ function App() {
       id: maxId,
       createdAt: new Date().getTime(),
       updatedAt: new Date().getTime(),
-      diffTime: 'now'
+      diffTime: 'now',
     };
   };
 
@@ -151,7 +151,9 @@ function App() {
       case 'all':
         return items;
       case 'active':
-        return items.filter((item) => item.status === 'active' || item.status === 'editing');
+        return items.filter(
+          (item) => item.status === 'active' || item.status === 'editing'
+        );
       case 'completed':
         return items.filter((item) => item.status === 'completed');
       default:
@@ -164,7 +166,9 @@ function App() {
   };
 
   const clearAll = () => {
-    const newData = todoData.filter((el) => el.status === 'active' || el.status === 'editing');
+    const newData = todoData.filter(
+      (el) => el.status === 'active' || el.status === 'editing'
+    );
     setTodoData(newData);
   };
 
@@ -172,7 +176,7 @@ function App() {
   const todoCount = todoData.length - doneCount;
 
   return (
-    <div className="todoapp">
+    <div className='todoapp'>
       <Header />
 
       <Main

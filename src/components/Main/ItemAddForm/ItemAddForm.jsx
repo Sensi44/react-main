@@ -29,28 +29,30 @@ function ItemAddForm(props) {
   };
 
   return (
-    <form className="item-add-form" onSubmit={onSubmit}>
+    <form className='item-add-form' onSubmit={onSubmit}>
       <input
         // autoFocus
-        type="text"
+        type='text'
         onFocus={onFocus}
         onBlur={onBlur}
         className={focus ? 'add-input' : 'add-input blur'}
         onChange={onLabelChange}
-        placeholder="What needs to be done"
+        placeholder='What needs to be done'
         value={label}
       />
-      <button type="submit" className="btn" onClick={onSubmit}>Add Item</button>
+      <button type='submit' className='btn' onClick={onSubmit}>
+        Add Item
+      </button>
     </form>
   );
 }
 
 ItemAddForm.defaultProps = {
-  add: () => {}
+  add: () => {},
 };
 
 ItemAddForm.propTypes = {
-  add: PropTypes.func
+  add: PropTypes.func,
 };
 
 export default ItemAddForm;
