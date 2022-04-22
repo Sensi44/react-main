@@ -57,6 +57,7 @@ function App() {
 
   const createTodoItem = (label) => {
     maxId += 1;
+
     return {
       label,
       important: false,

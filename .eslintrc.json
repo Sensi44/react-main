@@ -5,6 +5,11 @@
         "es6": true,
         "node": true
     },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
@@ -23,6 +28,7 @@
         "jsx-a11y"
     ],
     "rules": {
+
         "no-console": "off", //error на продакшн
         "linebreak-style": 0,
         "comma-dangle": ["error", {
