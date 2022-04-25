@@ -1,3 +1,3 @@
-import HeaderTitle from './HeaderTitle.jsx';
+import HeaderTitle from './HeaderTitle';
 
 export default HeaderTitle;

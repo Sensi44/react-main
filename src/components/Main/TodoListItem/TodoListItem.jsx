@@ -4,18 +4,8 @@ import PropTypes from 'prop-types';
 import './TodoListItem.scss';
 
 function TodoListItem(props) {
-  const {
-    label,
-    onDeleted,
-    onToggleDone,
-    onToggleImportant,
-    status,
-    important,
-    editItem,
-    confirmEdit,
-    diffTime,
-  } = props;
-
+  const { label, onDeleted, onToggleDone, onToggleImportant, status } = props;
+  const { important, editItem, confirmEdit, diffTime } = props;
   let [labelInput, setLabel] = useState('');
 
   const onLabelChange = (e) => {
@@ -47,13 +37,7 @@ function TodoListItem(props) {
     <>
       <form onSubmit={onSubmit}>
         <span className='edit-icon'>ᴥ</span>
-        <input
-          type='text'
-          className='edit'
-          onChange={onLabelChange}
-          placeholder={label}
-          onKeyDown={onChange}
-        />
+        <input type='text' className='edit' onChange={onLabelChange} placeholder={label} onKeyDown={onChange} />
       </form>
 
       <div className='view'>
@@ -62,28 +46,15 @@ function TodoListItem(props) {
         </span>
 
         <label>
-          <span
-            tabIndex={0}
-            role='menuitem'
-            className={labelClassNames}
-            onClick={onToggleDone}
-          >
+          <span tabIndex={0} role='menuitem' className={labelClassNames} onClick={onToggleDone}>
             {label}
           </span>
           <span className='created'>{diffTime}</span>
         </label>
 
         <button type='button' className='icon icon-edit' onClick={editItem} />
-        <button
-          type='button'
-          className='icon icon-destroy'
-          onClick={onDeleted}
-        />
-        <button
-          type='button'
-          className='icon icon-important'
-          onClick={onToggleImportant}
-        />
+        <button type='button' className='icon icon-destroy' onClick={onDeleted} />
+        <button type='button' className='icon icon-important' onClick={onToggleImportant} />
       </div>
     </>
   );

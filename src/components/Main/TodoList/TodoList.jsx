@@ -1,18 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import TodoListItem from '../TodoListItem';
 
 import './TodoList.scss';
 
 function TodoList(props) {
-  const {
-    todos,
-    onDeleted,
-    onToggleDone,
-    onToggleImportant,
-    editItem,
-    confirmEdit,
-  } = props;
+  const { todos, onDeleted, onToggleDone, onToggleImportant, editItem, confirmEdit } = props;
 
   const elements = todos.map((item, idx) => {
     const { id, status, label, important, diffTime } = item;

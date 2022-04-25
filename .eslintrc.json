@@ -5,16 +5,15 @@
         "es6": true,
         "node": true
     },
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
-    },
+    "ignorePatterns": ["node_modules", "dist", "build"],
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "plugin:prettier/recommended",
         "airbnb/base",
-        "plugin:jsx-a11y/recommended"
+        "plugin:jsx-a11y/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -23,13 +22,31 @@
         "ecmaVersion": 6,
         "sourceType": "module"
     },
-    "plugins": [
-        "react",
-        "jsx-a11y"
-    ],
+    "plugins": ["react", "jsx-a11y", "prettier", "import"],
     "rules": {
+        "indent": [2],
         "no-console": "off",
-        "linebreak-style": 0,
+        "prettier/prettier": "error",
+        "linebreak-style": [0, "unix"],
+        "quotes": ["error", "single"],
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": 0,
+        "import/no-unresolved": [2, { "caseSensitive": false }],
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "import/order": [
+            2,
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index"
+                ],
+                "newlines-between": "always"
+            }
+        ],
         "comma-dangle": ["error", {
             "arrays": "always-multiline",
             "objects": "always-multiline",
@@ -40,13 +57,12 @@
         "semi": "error",
         "no-plusplus": "off",
         "eol-last": "off",
-        "max-len": ["error", 120, {
+        "max-len": ["error", 125, {
             "ignoreUrls": true
         }],
         "no-tabs": "off",
         "no-alert": "warn",
         "prefer-destructuring": "off",
-//        "indent": [2, "tab"],
         "no-param-reassign": "off",
         "object-curly-newline": "off",
         "prefer-const": ["error", {
@@ -54,5 +70,17 @@
             "ignoreReadBeforeAssign": false
         }],
         "jsx-a11y/click-events-have-key-events": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
     }
 }
+

@@ -1,19 +1,11 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
+
 import ItemAddForm from './ItemAddForm';
 import TodoList from './TodoList';
 import './Main.scss';
 
-function Main({
-  todos,
-  onDeleted,
-  add,
-  onToggleDone,
-  onToggleImportant,
-  editItem,
-  confirmEdit,
-}) {
+function Main({ todos, onDeleted, add, onToggleDone, onToggleImportant, editItem, confirmEdit }) {
   return (
     <section className='main'>
       <TodoList

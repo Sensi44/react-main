@@ -16,10 +16,7 @@ function ItemStatusFilter(props) {
         {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <li onClick={() => filter('all')}>
-          <button
-            type='button'
-            className={filterStatus === 'all' ? 'selected' : ''}
-          >
+          <button type='button' className={filterStatus === 'all' ? 'selected' : ''}>
             All
           </button>
         </li>
@@ -27,10 +24,7 @@ function ItemStatusFilter(props) {
         {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <li onClick={() => filter('active')}>
-          <button
-            type='button'
-            className={filterStatus === 'active' ? 'selected' : ''}
-          >
+          <button type='button' className={filterStatus === 'active' ? 'selected' : ''}>
             Active
           </button>
         </li>
@@ -38,10 +32,7 @@ function ItemStatusFilter(props) {
         {/* eslint-disable-next-line max-len */}
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
         <li onClick={() => filter('completed')}>
-          <button
-            type='button'
-            className={filterStatus === 'completed' ? 'selected' : ''}
-          >
+          <button type='button' className={filterStatus === 'completed' ? 'selected' : ''}>
             Completed
           </button>
         </li>

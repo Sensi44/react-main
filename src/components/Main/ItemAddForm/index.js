@@ -1,3 +1,3 @@
-import ItemAddForm from './ItemAddForm.jsx';
+import ItemAddForm from './ItemAddForm';
 
 export default ItemAddForm;
