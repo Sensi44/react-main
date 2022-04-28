@@ -152,7 +152,6 @@ function App() {
   return (
     <div className='todoapp'>
       <Header />
-
       <Main
         todos={filter2(todoData, filterStatus)}
         onDeleted={deleteItem}
