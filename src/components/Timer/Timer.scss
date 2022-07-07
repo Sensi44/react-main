@@ -1,0 +1,45 @@
+.description {
+  display: flex;
+  align-items: center;
+}
+
+.icon_timer {
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+  cursor: pointer;
+}
+
+.todo-list li .icon-pause,
+.todo-list li .icon-play {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon-pause {
+  margin-right: 6px;
+}
+
+.todo-list li .icon-play {
+  font-size: 15px;
+}
+
+.icon-play:hover {
+  color: #af5b5e;
+}
+
+.icon-pause:after {
+  content: '⏸';
+  position: relative;
+  top: -3px;
+  left: -1px
+}
+
+.icon-play:after {
+  content: '▶';
+}
+
+.description {
+  font-size: 15px;
+  color: gray;
+}
