@@ -4,12 +4,10 @@ import HeaderTitle from './HeaderTitle';
 
 import './Header.scss';
 
-function Header() {
+export default function Header() {
   return (
     <header className='header'>
       <HeaderTitle />
     </header>
   );
 }
-
-export default Header;

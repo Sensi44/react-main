@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Timer from '../../Timer';
+
 import './TodoListItem.scss';
 
 function TodoListItem(props) {
@@ -52,6 +54,7 @@ function TodoListItem(props) {
           <span className='created'>{diffTime}</span>
         </label>
 
+        <Timer />
         <button type='button' className='icon icon-edit' onClick={editItem} />
         <button type='button' className='icon icon-destroy' onClick={onDeleted} />
         <button type='button' className='icon icon-important' onClick={onToggleImportant} />
